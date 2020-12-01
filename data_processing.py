@@ -37,8 +37,8 @@ def get_fs(data, axis, duration):
     :param duration: duration of measurement [s]
     :return: sampling rate [Hz]
     """
-    fs = len(data[axis])/duration
-    return fs
+    f_s = len(data[axis])//duration
+    return f_s
 
 
 def generate_training_dataset():
@@ -49,4 +49,9 @@ if __name__ == "__main__":
     path = os.getcwd()
     data = data.load(path+'/data/data_RAE.csv')
     print(data)
+
+    f_s = get_fs(data, 'x', 8)
+    print(f_s)
+    f, y = fft(data['x'], f_s)
+    plot_fft(f, y)
 
