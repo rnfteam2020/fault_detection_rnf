@@ -7,10 +7,10 @@ import pandas as pd
 import numpy as np
 
 def load(file_name:str):
-    """Data importing
+    """Data loading
 
-    :file_name: path to file with data
-    :return: data
+    :param file_name:   path to file with data
+    :return data:       loaded data
     """
     data = pd.read_csv(file_name,skipinitialspace=True)
     data = {"t"     : np.asarray(data['t']),
