@@ -4,8 +4,20 @@ from scipy.fft import rfft, rfftfreq
 import matplotlib.pyplot as plt
 
 
-def fft(x, N, fs):
-    y = np.abs(rfft(value))
+def fft(x, fs):
+    """FFT function
+
+    :params:
+    :x: input data for fft
+    :fs: sample frequency
+
+    :return:
+    :f: frequency
+    :y: magnitude
+
+    """
+
+    y = np.abs(rfft(x))
     N = len(y)
     f = rfftfreq(N, 1/fs)
     return f, y
