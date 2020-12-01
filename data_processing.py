@@ -1,5 +1,6 @@
 import data
 import os
+import numpy as np
 from scipy.fft import rfft, rfftfreq
 import matplotlib.pyplot as plt
 
