@@ -13,8 +13,6 @@ deadline - 15.12.2020
 ## 3) NN 
 - NN core, treainng atc.
 
-<<<<<<< HEAD
 ## 4) data_visualization
 - show output of NN
 
->>>>>>> 182d4c63138f756fb68918e67c3a88cc8c49d750
