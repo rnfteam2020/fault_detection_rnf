@@ -1,7 +1,7 @@
 import data
 import os
 from scipy.fft import rfft, rfftfreq
-from matplotlib.pyplot import plt
+import matplotlib.pyplot as plt
 
 
 def fft(x, N, fs):
