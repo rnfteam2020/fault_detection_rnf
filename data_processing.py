@@ -1,6 +1,6 @@
 import data
 import os
-from scipy.signal import rfft, rfftfreq
+from scipy.fft import rfft, rfftfreq
 from matplotlib.pyplot import plt
 
 
