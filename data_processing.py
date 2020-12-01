@@ -6,16 +6,19 @@ import matplotlib.pyplot as plt
 
 
 def fft(x, fs):
-    """FFT function
+    """
+    FFT function
 
-    :params:
-    :x: input data for fft
-    :fs: sample frequency
+    Args:
+        x: input data for fft
+        fs: sample frequency
 
-    :return:
-    :f: frequency
-    :y: magnitude
+    Returns:
+        f: frequency
+        y: magnitude
 
+    Raises:
+        None
     """
 
     y = np.abs(rfft(x))
