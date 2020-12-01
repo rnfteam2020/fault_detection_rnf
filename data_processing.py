@@ -18,6 +18,10 @@ def plot_fft(x, y):
     ax.grid()
     plt.show()
 
+def get_sampling_rate(data, axis, measurement_duration):
+    samp_rate = len(data[axis])/measurement_duration
+    return samp_rate
+
 if __name__ == "__main__":
     path = os.getcwd()
     data = data.load(path+'/data/data_RAE.csv')
