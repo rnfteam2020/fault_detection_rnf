@@ -1,3 +1,6 @@
 # fault_detection_rnf
 
-# test by h4vlik
+## description 
+deadline - 15.12.2020
+
+
