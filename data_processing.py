@@ -1,3 +1,10 @@
+import data
+import os
+
+
+
 
 if __name__ == "__main__":
-    pass
+    path = os.getcwd()
+    data = data.load(path+'/data/data_RAE.csv')
+    print(data)
