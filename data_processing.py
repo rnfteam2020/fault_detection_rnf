@@ -9,22 +9,16 @@ def fft(x, fs):
     """
     FFT function
 
-    Args:
-        x: input data for fft
-        fs: sample frequency
-
-    Returns:
-        f: frequency
-        y: magnitude
-
-    Raises:
-        None
+    :param x: input data for fft
+    :param fs: sample frequency [Hz]
+    :return: frequency [Hz], magnitude
     """
 
     y = np.abs(rfft(x))
     N = len(y)
     f = rfftfreq(N, 1/fs)
     return f, y
+
 
 def plot_fft(x, y):
     fig, ax = plt.subplots()
@@ -34,9 +28,19 @@ def plot_fft(x, y):
     ax.grid()
     plt.show()
 
-def get_sampling_rate(data, axis, measurement_duration):
-    samp_rate = len(data[axis])/measurement_duration
-    return samp_rate
+
+def get_fs(data, axis, duration):
+    """
+    returns sampling rate of input data
+
+    :param data: input data sets (list)
+    :param axis: index of desired axes {0, 1, 2, ...}
+    :param duration: duration of measurement [s]
+    :return: sampling rate [Hz]
+    """
+    fs = len(data[axis])/duration
+    return fs
+
 
 def generate_training_dataset():
     pass
