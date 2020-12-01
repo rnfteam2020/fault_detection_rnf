@@ -24,7 +24,6 @@ def plot_fft(x, y):
     fig, ax = plt.subplots()
     ax.plot(x, y)
     ax.set(xlabel='Frequency (Hz)', ylabel='Amplitude (-)', title='FFT')
-    ax.legend(loc=1)
     ax.grid()
     plt.show()
 
