@@ -6,12 +6,13 @@ from matplotlib.pyplot import plt
 
 def fft(x, N, fs):
     y = np.abs(rfft(value))
-    f = rfftfreq(N, 1/SAMPLE_RATE)
+    N = len(y)
+    f = rfftfreq(N, 1/fs)
     return f, y
 
-def plot(x, y):
+def plot_fft(x, y):
     fig, ax = plt.subplots()
-    ax.plot(f, y)
+    ax.plot(x, y)
     ax.set(xlabel='Frequency (Hz)', ylabel='Amplitude (-)', title='FFT')
     ax.legend(loc=1)
     ax.grid()
