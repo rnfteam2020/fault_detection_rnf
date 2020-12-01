@@ -14,8 +14,8 @@ def fft(x, fs):
     :return: frequency [Hz], magnitude
     """
 
+    N = len(x)
     y = np.abs(rfft(x))
-    N = len(y)
     f = rfftfreq(N, 1/fs)
     return f, y
 
