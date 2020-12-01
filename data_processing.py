@@ -38,6 +38,10 @@ def get_sampling_rate(data, axis, measurement_duration):
     samp_rate = len(data[axis])/measurement_duration
     return samp_rate
 
+def generate_training_dataset():
+    pass
+
+
 if __name__ == "__main__":
     path = os.getcwd()
     data = data.load(path+'/data/data_RAE.csv')
