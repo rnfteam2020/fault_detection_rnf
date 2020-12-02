@@ -30,4 +30,3 @@ pip install -r requirements.txt
 - [PyTorch: nn](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#pytorch-nn)
 - [link](https://www.sciencedirect.com/science/article/pii/S1876610218304831)
 
-Hruzas testuje
