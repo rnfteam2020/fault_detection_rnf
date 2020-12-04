@@ -29,4 +29,5 @@ pip install -r requirements.txt
 - [wiki](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)
 - [PyTorch: nn](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#pytorch-nn)
 - [link](https://www.sciencedirect.com/science/article/pii/S1876610218304831)
-
+-
+[kaggle](https://www.kaggle.com/c/vsb-power-line-fault-detection/notebooks)
