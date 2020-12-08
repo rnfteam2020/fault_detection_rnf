@@ -1,5 +1,4 @@
-"""
-Import data
+""" Import data
 
 For debug purpose sine wave is ok :)
 
@@ -20,22 +19,43 @@ Possible import examples:
 """
 import pandas as pd
 import numpy as np
+import h5py
 
-def load(file_name:str, data_type=None):
+def load(file_name:str, data_type='h5py'):
     """Data loading
-
 
     :param file_name:   path to file with data
     :param data_type:   dataset datatype (.mat, .csv, .txt, h5py, etc.)
     :return data:       loaded data
     """
-    data = pd.read_csv(file_name,skipinitialspace=True)
-    data = {"t"     : np.asarray(data['t']),
-            "x"     : np.asarray(data['x']),
-            "y"     : np.asarray(data['y']),
-            "z"     : np.asarray(data['z'])}
+
+    if data_type == 'csv':
+        data = pd.read_csv(file_name, skipinitialspace=True)
+    elif data_type == 'h5py':
+        data = h5py.File(file_name, 'r')
+    else:
+        data = None
 
     return data
+
+def h5py_key_list(data):
+    return list(data.keys())
+
+def h5py_parser(data_object):
+    """
+    Parser for h5py data objects
+
+    :param data_object: input data in h5py format
+    :return data_dict: dictionary representation of data
+    """
+
+    data_dict = {}
+    for name, data in data_object.items():
+        if type(data) is h5py.Dataset:
+            value = data.value
+            data_dict[str(name)] = value
+
+    return data_dict
 
 
 if __name__ == "__main__":
