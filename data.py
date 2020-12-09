@@ -19,13 +19,17 @@ Possible import examples:
 """
 import pandas as pd
 import numpy as np
+import scipy as sp
+from scipy.integrate import odeint
 import h5py
+import matplotlib.pyplot as plt
 
 def load(file_name:str, data_type='h5py'):
     """Data loading
 
     :param file_name:   path to file with data
     :param data_type:   dataset datatype (.mat, .csv, .txt, h5py, etc.)
+
     :return data:       loaded data
     """
 
@@ -38,14 +42,12 @@ def load(file_name:str, data_type='h5py'):
 
     return data
 
-def h5py_key_list(data):
-    return list(data.keys())
-
 def h5py_parser(data_object):
     """
     Parser for h5py data objects
 
     :param data_object: input data in h5py format
+
     :return data_dict: dictionary representation of data
     """
 
@@ -57,6 +59,48 @@ def h5py_parser(data_object):
 
     return data_dict
 
+def u_sin(t):
+    return np.sin(t)
+
+def u_step(t):
+    return 0 if t < 20 else 1
+
+def model(x, t, b, k, m):
+    """
+    ODE model: spring, mass damp.
+
+    :param x: input x value
+    :param t: time value
+    :param b: damping
+    :param k: spring stiffness
+    :param m: mass
+
+    :return dx: derivative x
+    """
+    dx0 = x[1]
+    dx1 = -k/m*x[0] - b/m*x[1] + u_step(t)/m
+    dx = [dx0, dx1]
+
+    return dx
+
+def test_model():
+    """
+    Test model function
+
+    if we pass k,b,m = 0 => no spring, damp, mass in system =>  achieve
+    some fault.
+    """
+    n = 5001
+    t = np.linspace(0, 50, n)
+
+    x0 = [0.1, 0]
+    b = 1
+    k = 100
+    m = 1
+
+    y = odeint(model, x0, t, args=(b, k, m))
+    plt.plot(t, y)
+    plt.show()
 
 if __name__ == "__main__":
-    pass
+    test_model()
