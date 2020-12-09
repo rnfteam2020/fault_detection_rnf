@@ -5,8 +5,7 @@ import torch
 import torch.nn as nn
 import time
 from progress.bar import Bar
-import matplotlib.pyplot as plt
-import numpy as np
+import visualization as vi
 
 class BaseNN(torch.nn.Module):
 
@@ -67,11 +66,14 @@ def fit(net, x_train, y_train, lr=0.05, epochs=1000):
         loss_data.append(loss.item())
 
     bar.finish()
-    plt.plot(np.linspace(0,epochs,epochs), loss_data)
-    plt.title("Loss function")
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss")
-    plt.show()
+    vi.plot_loss(epochs, loss_data)
+
+
+class Classifier(BaseNN):
+    def __init__(self):
+        super().__init__()
+
+
 
 if __name__ == "__main__":
     x_train = torch.tensor([[1.0, 0.0]])
@@ -79,6 +81,6 @@ if __name__ == "__main__":
     net = Model(1,2,1)
 
     fit(net, x_train, y_train)
-
-    print(f"[TEST] 1 = {net.forward(x_train)}")
+    y = net.forward(x_train)[0][0]
+    print(f"[TEST] 1 = {y:.3f} ? success :{1-y < 0.1}")
 
