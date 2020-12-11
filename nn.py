@@ -28,6 +28,9 @@ class BaseNN(torch.nn.Module):
 
 
 class Model(BaseNN):
+    """
+    Basic test-model, to be sure that everything is works :)
+    """
     def __init__(self, batch_size, input_dim, output_dim):
         super().__init__()
         N1 = 2
