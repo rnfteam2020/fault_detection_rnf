@@ -9,6 +9,8 @@ import visualization as vi
 from data import (generate_data_from_model, CustomDataset, verification,
                     generate_dataset)
 
+DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 class BaseNN(torch.nn.Module):
 
     def __init__(self):
@@ -68,9 +70,9 @@ def fit(net, dataset, lr=0.05, epochs=1000, batch_size=None):
         for epoch in range(epochs):
             y = net.forward(x_train)
             loss = loss_function(y, y_train)
-            optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            optimizer.zero_grad()
             bar.next()
             loss_data.append(loss.item())
         bar.finish()
@@ -81,13 +83,14 @@ def fit(net, dataset, lr=0.05, epochs=1000, batch_size=None):
         n_iterations = total_samples//batch_size
 
         for epoch in range(epochs):
+            net.train()
             for i in range(n_iterations):
                 x_train, y_train = dataset.next()
                 y = net.forward(x_train)
                 loss = loss_function(y, y_train)
-                optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
+                optimizer.zero_grad()
                 loss_data.append(loss.item())
             bar.next()
         bar.finish()
@@ -109,7 +112,7 @@ class FDModel(BaseNN):
 
 
 if __name__ == "__main__":
-    net = FDModel(1,1,4)
+    net = FDModel(1,1,4).to(DEVICE)
     t, u, y = generate_data_from_model()
     dataset = CustomDataset(u, y)
     dataset = generate_dataset(dataset, batch_size=1)

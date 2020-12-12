@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from torch.utils.data import Dataset, DataLoader
 import torch
 
+DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def u_sin(t):
     return np.sin(t)
@@ -70,8 +71,8 @@ class CustomDataset(Dataset):
 
     """
     def __init__(self, x, y):
-        self.x = torch.Tensor(x)
-        self.y = torch.Tensor(y)
+        self.x = torch.from_numpy(x).float().to(DEVICE)
+        self.y = torch.from_numpy(y).float().to(DEVICE)
         self.n_samples = self.x.shape[0]
 
     def __getitem__(self, index):
