@@ -98,8 +98,8 @@ def generate_statistic_features(t_max):
     x_variance = np.square(x_stdev)
     y_variance = np.square(y_stdev)
 
-    x_min = rms(pos)
-    y_min = rms(vel)
+    x_rms = rms(pos)
+    y_rms = rms(vel)
 
     x_f, x_mag = fft(data, get_fs([pos, vel], 0, t_max))
     y_f, y_mag = fft(data, get_fs([pos, vel], 1, t_max))
@@ -116,7 +116,7 @@ def generate_statistic_features(t_max):
     x_max_freqs = x_f[x_f_peaks_idx_max3]
     y_max_freqs = y_f[y_f_peaks_idx_max3]
 
-
+    x_train = {'Min': x_min }
 
     return x_train, y_train
 
