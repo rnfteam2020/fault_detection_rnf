@@ -5,15 +5,25 @@ import numpy as np
 import scipy as sp
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
-from torch.utils.data import Dataset, DataLoader
-import torch
-
-DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def u_sin(t):
+    """
+    Sine function input signal
+
+    :param t: time
+
+    :return: vector
+    """
     return np.sin(t)
 
 def u_step(t):
+    """
+    Step function as input signal
+
+    :param t: time
+
+    :return: vector
+    """
     return 0 if t < 20 else 1
 
 def model(x, t, b, k, m):
@@ -53,43 +63,20 @@ def test_model():
     plt.plot(t, y)
     plt.show()
 
-class CustomDataset(Dataset):
+
+def generate_data_from_model(n=5001, t_max=50, b=1, k=100, m=1):
     """
-    Create a dataset from data
+    Dataset generator with parameters
 
-    After we can load it with DataLoader:
-    >dataloader = DataLoader(dataset=dataset, batch_size=4, shuffle=True,
-    num_workers=2)
-    *num_workers - multiprocessing
+    :param n: number of samples
+    :param t_max: max value of t vector
+    :param b: damping
+    :param k: spring stiffness
+    :param m: mass
 
-
-    Can be part of training loop:
-        >dataiter = iter(dataloader)
-        >data = dataiter.next()
-        >features, labels = data
-        >print(features, labels)
-
-    """
-    def __init__(self, x, y):
-        self.x = torch.from_numpy(x).float().to(DEVICE)
-        self.y = torch.from_numpy(y).float().to(DEVICE)
-        self.n_samples = self.x.shape[0]
-
-    def __getitem__(self, index):
-        return self.x[index], self.y[index]
-
-    def __len__(self):
-        return self.n_samples
-
-
-def generate_dataset(dataset, batch_size=None, shuffle=False, num_workers=1):
-    dataloader = DataLoader(dataset=dataset, batch_size=batch_size,
-            shuffle=shuffle, num_workers=num_workers)
-    return iter(dataloader)
-
-def generate_data_from_model():
-    """
-    Dataset generator
+    :return t: time vector
+    :return u: input to model vector
+    :return y: model response
 
     """
     n = 5001
@@ -107,17 +94,8 @@ def generate_data_from_model():
     return t, u, y
 
 def verification(net, u):
-    y_hat = torch.zeros([len(u)])
-    for i in range(len(u)):
-        x = u[i]
-        y_hat[i] = net.forward(x)
-
-    return y_hat
+    # TODO
+    pass
 
 if __name__ == "__main__":
-    t, u, y = generate_data_from_model()
-    dataset = CustomDataset(u,y)
-    print(f"Dataset len: {len(dataset)}")
-    dataset = generate_dataset(dataset)
-    for _ in range(5):
-        print(dataset.next())
+    pass
