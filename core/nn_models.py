@@ -29,33 +29,6 @@ class BaseNN(torch.nn.Module):
         return name
 
 
-class Model(BaseNN):
-    """
-    Basic test-model, to be sure that everything is works :)
-    """
-    def __init__(self, batch_size, input_dim, output_dim):
-        super().__init__()
-        N1 = 2
-        self.layers = []
-        self.layer1 = nn.Linear(input_dim, N1, bias=False)
-        self.layer2 = nn.Linear(N1, output_dim, bias=False)
-
-        self.layers.append(self.layer1)
-        self.layers.append(self.layer2)
-
-    def forward(self, x):
-        x = torch.sigmoid(self.layer1(x))
-        x = torch.sigmoid(self.layer2(x))
-        return x
-
-    def print_info(self):
-        string = ''
-        for layer in self.layers:
-            string += str(layer.weight) + '\n'
-        return string
-
-
-
 class FDModel(BaseNN):
     def __init__(self, input_dim, output_dim, hidden_dim):
         super().__init__()
@@ -71,9 +44,4 @@ class FDModel(BaseNN):
 
 if __name__ == "__main__":
     net = FDModel(1,1,4).to(DEVICE)
-    t, u, y = generate_data_from_model()
-    dataset = CustomDataset(u, y)
-    dataset = generate_dataset(dataset, batch_size=1)
-    print(dataset.next())
 
-    fit(net, dataset, batch_size=1)

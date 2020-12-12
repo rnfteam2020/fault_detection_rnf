@@ -46,8 +46,12 @@ def generate_statistic_features():
     # TODO
     """
     Generate statistic features from signals
-    :return x_train, y_train: features(statistic data), labels(0/1)
+    :return x_train, y_train: features(statistic data in np.array([])),
+                                labels(np.array([1/0])
     """
+    # Generated data from model
+    # data is in dictionary format
+    # data = {'label': 0/1, 'signals': np.array([t,u,y])}
     data = generate_signals_with_labels()
     # data = {'label': 0/1, 'signals': np.array([t,u,[x, y]]])}
 

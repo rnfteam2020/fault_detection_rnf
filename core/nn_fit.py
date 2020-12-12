@@ -1,11 +1,13 @@
 import torch
 import torch.nn as nn
 import core.visualization as vi
+from core.dataset import generate_dataset
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
 def make_train_step(net, loss_function, optimizer):
+
     def train_step(x_train, y_train):
         net.train()
         y_hat = net.forward(x_train)
@@ -14,6 +16,7 @@ def make_train_step(net, loss_function, optimizer):
         optimizer.step()
         optimizer.zero_grad()
         return loss.item()
+
     return train_step
 
 
@@ -24,8 +27,9 @@ def fit(net, dataset, lr=0.05, epochs=1000, batch_size=None):
     loss_function = nn.MSELoss()
     optimizer = torch.optim.Adam(net.parameters(), lr=lr)
 
-    # train_loader
-    train_loader = generate_train_loader() # TODO
+    train_loader = generate_dataset(batch_size=1, shuffle=False,
+            num_workers=1)
+
     train_step = make_train_step(net, loss_function, optimizer)
 
     losses_data = []
