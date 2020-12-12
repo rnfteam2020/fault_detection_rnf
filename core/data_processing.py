@@ -3,6 +3,7 @@ import os
 import numpy as np
 from scipy.fft import rfft, rfftfreq
 import matplotlib.pyplot as plt
+import statistics
 
 
 def fft(x, fs):
@@ -48,6 +49,23 @@ def generate_statistic_features():
     :return x_train, y_train: features(statistic data), labels(0/1)
     """
     data = generate_signals_with_labels()
+    # data = {'label': 0/1, 'signals': np.array([t,u,[x, y]]])}
+
+    x_min = min(data['signals'][2][0])
+    y_min = min(data['signals'][2][1])
+
+    x_max = min(data['signals'][2][0])
+    y_max = min(data['signals'][2][1])
+
+    x_mean = statistics.mean(data['signals'][2][0])
+    x_mean = statistics.mean(data['signals'][2][1])
+
+    x_median = statistics.median(data['signals'][2][0])
+    x_median = statistics.median(data['signals'][2][1])
+
+    x_stdev = statistics.stdev(data['signals'][2][0])
+    x_stdev = statistics.stdev(data['signals'][2][1])
+
 
     return x_train, y_train
 
