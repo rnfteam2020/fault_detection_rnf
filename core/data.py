@@ -90,14 +90,14 @@ def generate_data_from_model(b=1, k=100, m=1, n=5001, t_max=50):
 
     y = odeint(model, x0, t, args=(b, k, m))
     u = np.asarray(list(map(u_step, t)), dtype="float")    # control signal to model
-    y = y[:,0]
+    y = y
 
     return t, u, y
 
 def generate_signals_with_labels():
     # TODO
     """
-    Generate heals and false data
+    Generate health and fault data
 
     :return data: data = {'label': 0/1, 'signals': np.array([t,u,y])}
 
@@ -125,9 +125,13 @@ def generate_signals_with_labels():
     labels = [1 if x < 1 else 0 for x in b_pom]
 
     dat = list(map(generate_data_from_model, b_arr, k_arr, m_arr))
-    data = dict(zip(labels, dat))
 
+    # zip doesnt work here
+    #data = dict(zip(labels, dat))
 
+    data = []
+    for i in range(len(labels)):
+        data.append({labels[i]:dat[i]})
 
     return data
 
@@ -137,4 +141,8 @@ def verification(net, u):
     pass
 
 if __name__ == "__main__":
-    pass
+    data = generate_signals_with_labels()
+    for d in data:
+        for label, signal in d.items():
+            print(f'{label} : {signal}')
+
