@@ -80,13 +80,9 @@ def generate_data_from_model(b=1, k=100, m=1, n=5001, t_max=50):
     :return y: model response
 
     """
-    n = 5001
-    t = np.linspace(0, 50, n)
+    t = np.linspace(0, t_max, n)
 
     x0 = [0, 0]
-    b = 1
-    k = 100
-    m = 1
 
     y = odeint(model, x0, t, args=(b, k, m))
     u = np.asarray(list(map(u_step, t)), dtype="float")    # control signal to model
