@@ -5,9 +5,7 @@ import torch
 import torch.nn as nn
 import time
 from progress.bar import Bar
-import visualization as vi
-from data import (generate_data_from_model, CustomDataset, verification,
-                    generate_dataset)
+import core.visualization as vi
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 

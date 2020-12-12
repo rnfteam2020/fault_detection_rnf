@@ -1,4 +1,4 @@
-import data
+import core.data
 import os
 import numpy as np
 from scipy.fft import rfft, rfftfreq

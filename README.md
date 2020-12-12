@@ -12,18 +12,32 @@ pip install -r requirements.txt
 
 ## Files structure
 
-### data
-- get data from csv to numpy array
+### core
+#### data
+- generate "healthy and fault" data of 1DOF model mechanical oscillator
 
-### data_preprocessing
+#### data_preprocessing
 - input - data
 - output - FFT, mean, max value ...
+ 
+#### dataset
+- generate torch dataset
 
-### nn 
-- NN core, treainng atc.
+#### nn_fit 
+- Training functions for NN models
 
-### visualization
-- show output of NN
+#### nn_models 
+- NN models
+
+#### visualization
+- visualize results
+- visualization functions
+
+#### mat_loader
+- wrapper for .mat format
+ 
+### data
+- datasets
 
 ## Sources
 - [wiki](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)
