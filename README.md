@@ -12,7 +12,7 @@ pip install -r requirements.txt
 
 ## Files structure
 
-### core
+### core:
 #### data
 - generate "healthy and fault" data of 1DOF model mechanical oscillator
 
@@ -36,8 +36,8 @@ pip install -r requirements.txt
 #### mat_loader
 - wrapper for .mat format
  
-### data
-- datasets
+### data:
+#### datasets
 
 ## Sources
 - [wiki](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)

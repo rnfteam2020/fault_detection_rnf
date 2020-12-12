@@ -1,4 +1,4 @@
-import core.data
+from core.data import generate_signals_with_labels
 import os
 import numpy as np
 from scipy.fft import rfft, rfftfreq
@@ -41,21 +41,16 @@ def get_fs(data, axis, duration):
     return f_s
 
 
-def generate_statistic_features(t,u,y):
+def generate_statistic_features():
     # TODO
     """
     Generate statistic features from signals
-
-    :param t: time vector
-    :param u: input signal to model
-    :param y: response from signal! process this signal
-
-    Note: y is np.array with shape = (n,2) [position, velocity]
-
     :return x_train, y_train: features(statistic data), labels(0/1)
     """
+    data = generate_signals_with_labels()
 
     return x_train, y_train
+
 
 
 if __name__ == "__main__":
