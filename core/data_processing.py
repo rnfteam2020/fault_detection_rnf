@@ -4,7 +4,7 @@ import numpy as np
 from scipy.fft import rfft, rfftfreq
 import matplotlib.pyplot as plt
 import statistics
-
+import math
 
 def fft(x, fs):
     """
@@ -40,6 +40,21 @@ def get_fs(data, axis, duration):
     """
     f_s = len(data[axis])//duration
     return f_s
+
+
+def rms(x):
+    """
+    calc RMS of array
+
+    :param x: input array
+    :return: RMS (root mean square)
+    """
+    ms = 0
+    for i in range(len(x)):
+        ms = ms + x[i]^2
+    ms = ms/len(x)
+    rms = math.sqrt(ms)
+    return rms
 
 
 def generate_statistic_features():
