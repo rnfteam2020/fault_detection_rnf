@@ -4,6 +4,7 @@ Create a dataset
 """
 from torch.utils.data import Dataset, DataLoader
 import torch
+from core.data_processing import generate_statistic_features
 
 class CustomDataset(Dataset):
     """
@@ -24,10 +25,13 @@ class CustomDataset(Dataset):
         return self.n_samples
 
 
-def generate_trainloader(dataset, batch_size=None, shuffle=False, num_workers=1):
+def generate_dataset(batch_size=1, shuffle=False, num_workers=1):
+    features, lables = generate_features_labels()
+    dataset = CustomDataset(features, labels)
     dataloader = DataLoader(dataset=dataset, batch_size=batch_size,
             shuffle=shuffle, num_workers=num_workers)
     return dataloader
+
 
 if __name__ == "__main__":
     pass
