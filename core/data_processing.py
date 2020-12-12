@@ -70,20 +70,20 @@ def generate_statistic_features():
     data = generate_signals_with_labels()
     # data = {'label': 0/1, 'signals': np.array([t,u,[x, y]]])}
 
-    x_min = min(data['signals'][2][0])
-    y_min = min(data['signals'][2][1])
+    x_min = np.minimum(data['signals'][2][0])
+    y_min = np.minimum(data['signals'][2][1])
 
-    x_max = min(data['signals'][2][0])
-    y_max = min(data['signals'][2][1])
+    x_max = np.maximum(data['signals'][2][0])
+    y_max = np.maximum(data['signals'][2][1])
 
-    x_mean = statistics.mean(data['signals'][2][0])
-    x_mean = statistics.mean(data['signals'][2][1])
+    x_mean = np.mean(data['signals'][2][0])
+    x_mean = np.mean(data['signals'][2][1])
 
-    x_median = statistics.median(data['signals'][2][0])
-    x_median = statistics.median(data['signals'][2][1])
+    x_median = np.median(data['signals'][2][0])
+    x_median = np.median(data['signals'][2][1])
 
-    x_stdev = statistics.stdev(data['signals'][2][0])
-    x_stdev = statistics.stdev(data['signals'][2][1])
+    x_stdev = np.std(data['signals'][2][0])
+    x_stdev = np.std(data['signals'][2][1])
 
 
     return x_train, y_train
