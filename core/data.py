@@ -92,7 +92,7 @@ def generate_data_from_model(b=1, k=100, m=1, n=5001, t_max=50):
     u = np.asarray(list(map(u_step, t)), dtype="float")    # control signal to model
     y = y
 
-    return t, u, y
+    return [t, u, y]
 
 def generate_signals_with_labels():
     # TODO
