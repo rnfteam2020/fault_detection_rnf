@@ -6,6 +6,7 @@ import scipy as sp
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
+
 def u_sin(t):
     """
     Sine function input signal
@@ -92,6 +93,17 @@ def generate_data_from_model(n=5001, t_max=50, b=1, k=100, m=1):
     y = y[:,0]
 
     return t, u, y
+
+def generate_signals_with_labels():
+    # TODO
+    """
+    Generate heals and false data
+
+    :return data: data = {'label': 0/1, 'signals': np.array([t,u,y])}
+
+    """
+    return data
+
 
 def verification(net, u):
     # TODO

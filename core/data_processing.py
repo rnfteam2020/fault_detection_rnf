@@ -41,8 +41,21 @@ def get_fs(data, axis, duration):
     return f_s
 
 
-def generate_training_dataset():
-    pass
+def generate_statistic_features(t,u,y):
+    # TODO
+    """
+    Generate statistic features from signals
+
+    :param t: time vector
+    :param u: input signal to model
+    :param y: response from signal! process this signal
+
+    Note: y is np.array with shape = (n,2) [position, velocity]
+
+    :return x_train, y_train: features(statistic data), labels(0/1)
+    """
+
+    return x_train, y_train
 
 
 if __name__ == "__main__":
