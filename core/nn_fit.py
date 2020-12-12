@@ -1,3 +1,22 @@
+import torch
+import torch.nn as nn
+import core.visualization as vi
+
+DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+
+def make_train_step(net, loss_function, optimizer):
+    def train_step(x_train, y_train):
+        net.train()
+        y_hat = net.forward(x_train)
+        loss = loss_function(y_hat, y_train)
+        loss.backward()
+        optimizer.step()
+        optimizer.zero_grad()
+        return loss.item()
+    return train_step
+
+
 def fit(net, dataset, lr=0.05, epochs=1000, batch_size=None):
 
     bar = Bar('Epochs', max=epochs)
@@ -5,47 +24,26 @@ def fit(net, dataset, lr=0.05, epochs=1000, batch_size=None):
     loss_function = nn.MSELoss()
     optimizer = torch.optim.Adam(net.parameters(), lr=lr)
 
-    loss_data = []
+    # train_loader
+    train_loader = generate_train_loader() # TODO
+    train_step = make_train_step(net, loss_function, optimizer)
 
-    if batch_size is None:
-        x_train, y_train = dataset
-        for epoch in range(epochs):
-            y = net.forward(x_train)
-            loss = loss_function(y, y_train)
-            loss.backward()
-            optimizer.step()
-            optimizer.zero_grad()
-            bar.next()
-            loss_data.append(loss.item())
-        bar.finish()
+    losses_data = []
 
-    else:
+    for epoch in range(epochs):
 
-        total_samples = len(dataset)
-        n_iterations = total_samples//batch_size
+        for x_batch, y_batch in train_loader:
 
-        for epoch in range(epochs):
-            net.train()
-            for i in range(n_iterations):
-                x_train, y_train = dataset.next()
-                y = net.forward(x_train)
-                loss = loss_function(y, y_train)
-                loss.backward()
-                optimizer.step()
-                optimizer.zero_grad()
-                loss_data.append(loss.item())
-            bar.next()
-        bar.finish()
+            x_batch = x_batch.to(DEVICE)
+            y_batch = y_batch.to(DEVICE)
 
-    vi.plot_loss(epochs, loss_data)
+            loss = train_step(x_batch, y_batch)
+            losses_data.append(loss)
+        bar.next()
 
+    bar.finish()
 
+    vi.plot_loss(epochs, losses_data)
 
 if __name__ == "__main__":
-    net = FDModel(1,1,4).to(DEVICE)
-    t, u, y = generate_data_from_model()
-    dataset = CustomDataset(u, y)
-    dataset = generate_dataset(dataset, batch_size=1)
-    print(dataset.next())
-
-    fit(net, dataset, batch_size=1)
+    pass
