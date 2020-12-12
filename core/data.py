@@ -102,6 +102,33 @@ def generate_signals_with_labels():
     :return data: data = {'label': 0/1, 'signals': np.array([t,u,y])}
 
     """
+    m_max = 500
+    m_min = 10
+    m_N = 10
+    m_arr = np.linspace(m_min, m_max, m_N)
+
+    k_max = 5000
+    k_min = 10
+    k_N = m_N
+    k_arr = np.linspace(k_min, k_max, k_N)[::-1]
+
+    b_max = 2000
+    b_min = 10
+    b_N = m_N
+    b_arr = np.linspace(b_min, b_max, b_N)
+
+    # podminka 0
+    # pokud ma soustava pomerny utlum >= 1 je pretlumena a nedochazi ke kmitani
+    # pomerny utlum
+    b_pom = b_arr / (2 * np.sqrt(m_arr * k_arr))
+
+    labels = [1 if x < 1 else 0 for x in b_pom]
+
+    dat = list(map(generate_data_from_model, b_arr, k_arr, m_arr))
+    data = dict(zip(labels, dat))
+
+
+
     return data
 
 
