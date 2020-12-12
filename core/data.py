@@ -65,7 +65,7 @@ def test_model():
     plt.show()
 
 
-def generate_data_from_model(n=5001, t_max=50, b=1, k=100, m=1):
+def generate_data_from_model(b=1, k=100, m=1, n=5001, t_max=50):
     """
     Dataset generator with parameters
 
