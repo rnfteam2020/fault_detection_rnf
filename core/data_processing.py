@@ -75,20 +75,26 @@ def generate_statistic_features():
     """
     # data = {'label': 0/1, 'signals': np.array([t,u,[x, y]]])}
 
-    x_min = np.minimum(data['signals'][2][0])
-    y_min = np.minimum(data['signals'][2][1])
+    pos = data['signals'][2][0]     # position
+    vel = data['signals'][2][0]     # velocity
 
-    x_max = np.maximum(data['signals'][2][0])
-    y_max = np.maximum(data['signals'][2][1])
+    x_min = np.amin(pos)
+    y_min = np.amin(vel)
 
-    x_mean = np.mean(data['signals'][2][0])
-    x_mean = np.mean(data['signals'][2][1])
+    x_max = np.amax(pos)
+    y_max = np.amax(vel)
 
-    x_median = np.median(data['signals'][2][0])
-    x_median = np.median(data['signals'][2][1])
+    x_mean = np.mean(pos)
+    x_mean = np.mean(vel)
 
-    x_stdev = np.std(data['signals'][2][0])
-    x_stdev = np.std(data['signals'][2][1])
+    x_median = np.median(pos)
+    x_median = np.median(vel)
+
+    x_stdev = np.std(pos)
+    x_stdev = np.std(vel)
+
+    x_min = rms(pos)
+    y_min = rms(vel)
 
 
     return x_train, y_train
