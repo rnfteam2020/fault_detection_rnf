@@ -30,4 +30,4 @@ pip install -r requirements.txt
 - [PyTorch: nn](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#pytorch-nn)
 - [link](https://www.sciencedirect.com/science/article/pii/S1876610218304831)
 - [kaggle](https://www.kaggle.com/c/vsb-power-line-fault-detection/notebooks)
-- [FDI](www.researchgate.net/publication/221412815_Fault_detection_methods_A_literature_survey)
+- [FDI](www.researchgate.net/publication/221412815_Fault_detection_methods_A_literature_survey/)

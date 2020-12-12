@@ -6,6 +6,8 @@ import torch.nn as nn
 import time
 from progress.bar import Bar
 import visualization as vi
+from data import (generate_data_from_model, CustomDataset, verification,
+                    generate_dataset)
 
 class BaseNN(torch.nn.Module):
 
@@ -52,38 +54,65 @@ class Model(BaseNN):
             string += str(layer.weight) + '\n'
         return string
 
-def fit(net, x_train, y_train, lr=0.05, epochs=1000):
+def fit(net, dataset, lr=0.05, epochs=1000, batch_size=None):
+
     bar = Bar('Epochs', max=epochs)
 
     loss_function = nn.MSELoss()
     optimizer = torch.optim.Adam(net.parameters(), lr=lr)
 
     loss_data = []
-    for i in range(epochs):
-        y = net.forward(x_train)
-        loss = loss_function(y, y_train)
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        bar.next()
-        loss_data.append(loss.item())
 
-    bar.finish()
+    if batch_size is None:
+        x_train, y_train = dataset
+        for epoch in range(epochs):
+            y = net.forward(x_train)
+            loss = loss_function(y, y_train)
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            bar.next()
+            loss_data.append(loss.item())
+        bar.finish()
+
+    else:
+
+        total_samples = len(dataset)
+        n_iterations = total_samples//batch_size
+
+        for epoch in range(epochs):
+            for i in range(n_iterations):
+                x_train, y_train = dataset.next()
+                y = net.forward(x_train)
+                loss = loss_function(y, y_train)
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+                loss_data.append(loss.item())
+            bar.next()
+        bar.finish()
+
     vi.plot_loss(epochs, loss_data)
 
 
-class Classifier(BaseNN):
-    def __init__(self):
+class FDModel(BaseNN):
+    def __init__(self, input_dim, output_dim, hidden_dim):
         super().__init__()
 
+        self.layer1 = nn.Linear(input_dim, hidden_dim, bias=False)
+        self.layer2 = nn.Linear(hidden_dim, output_dim, bias=False)
+
+    def forward(self, x):
+        x = torch.sigmoid(self.layer1(x))
+        x = torch.sigmoid(self.layer2(x))
+        return x
 
 
 if __name__ == "__main__":
-    x_train = torch.tensor([[1.0, 0.0]])
-    y_train = torch.tensor([[1.0]])
-    net = Model(1,2,1)
+    net = FDModel(1,1,4)
+    t, u, y = generate_data_from_model()
+    dataset = CustomDataset(u, y)
+    dataset = generate_dataset(dataset, batch_size=1)
+    print(dataset.next())
 
-    fit(net, x_train, y_train)
-    y = net.forward(x_train)[0][0]
-    print(f"[TEST] 1 = {y:.3f} ? success :{1-y < 0.1}")
-
+    fit(net, dataset, batch_size=1)

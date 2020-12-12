@@ -1,63 +1,13 @@
-""" Import data
-
-For debug purpose sine wave is ok :)
-
-Possible import examples:
------------------------------------------------------------
-    import numpy as np
-    import h5py
-    f = h5py.File('somefile.mat','r')
-    data = f.get('data/variable1')
-    data = np.array(data) # For converting to a NumPy array
------------------------------------------------------------
-    import scipy.io
-    mat = scipy.io.loadmat('file.mat')
-    save('mat.mat', '-v7')
------------------------------------------------------------
-
-
 """
-import pandas as pd
+Data and Dataset generation
+"""
 import numpy as np
 import scipy as sp
 from scipy.integrate import odeint
-import h5py
 import matplotlib.pyplot as plt
+from torch.utils.data import Dataset, DataLoader
+import torch
 
-def load(file_name:str, data_type='h5py'):
-    """Data loading
-
-    :param file_name:   path to file with data
-    :param data_type:   dataset datatype (.mat, .csv, .txt, h5py, etc.)
-
-    :return data:       loaded data
-    """
-
-    if data_type == 'csv':
-        data = pd.read_csv(file_name, skipinitialspace=True)
-    elif data_type == 'h5py':
-        data = h5py.File(file_name, 'r')
-    else:
-        data = None
-
-    return data
-
-def h5py_parser(data_object):
-    """
-    Parser for h5py data objects
-
-    :param data_object: input data in h5py format
-
-    :return data_dict: dictionary representation of data
-    """
-
-    data_dict = {}
-    for name, data in data_object.items():
-        if type(data) is h5py.Dataset:
-            value = data.value
-            data_dict[str(name)] = value
-
-    return data_dict
 
 def u_sin(t):
     return np.sin(t)
@@ -102,5 +52,71 @@ def test_model():
     plt.plot(t, y)
     plt.show()
 
+class CustomDataset(Dataset):
+    """
+    Create a dataset from data
+
+    After we can load it with DataLoader:
+    >dataloader = DataLoader(dataset=dataset, batch_size=4, shuffle=True,
+    num_workers=2)
+    *num_workers - multiprocessing
+
+
+    Can be part of training loop:
+        >dataiter = iter(dataloader)
+        >data = dataiter.next()
+        >features, labels = data
+        >print(features, labels)
+
+    """
+    def __init__(self, x, y):
+        self.x = torch.Tensor(x)
+        self.y = torch.Tensor(y)
+        self.n_samples = self.x.shape[0]
+
+    def __getitem__(self, index):
+        return self.x[index], self.y[index]
+
+    def __len__(self):
+        return self.n_samples
+
+
+def generate_dataset(dataset, batch_size=None, shuffle=False, num_workers=1):
+    dataloader = DataLoader(dataset=dataset, batch_size=batch_size,
+            shuffle=shuffle, num_workers=num_workers)
+    return iter(dataloader)
+
+def generate_data_from_model():
+    """
+    Dataset generator
+
+    """
+    n = 5001
+    t = np.linspace(0, 50, n)
+
+    x0 = [0, 0]
+    b = 1
+    k = 100
+    m = 1
+
+    y = odeint(model, x0, t, args=(b, k, m))
+    u = np.asarray(list(map(u_step, t)), dtype="float")    # control signal to model
+    y = y[:,0]
+
+    return t, u, y
+
+def verification(net, u):
+    y_hat = torch.zeros([len(u)])
+    for i in range(len(u)):
+        x = u[i]
+        y_hat[i] = net.forward(x)
+
+    return y_hat
+
 if __name__ == "__main__":
-    test_model()
+    t, u, y = generate_data_from_model()
+    dataset = CustomDataset(u,y)
+    print(f"Dataset len: {len(dataset)}")
+    dataset = generate_dataset(dataset)
+    for _ in range(5):
+        print(dataset.next())
