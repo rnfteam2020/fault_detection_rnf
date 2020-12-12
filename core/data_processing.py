@@ -5,6 +5,7 @@ from scipy.fft import rfft, rfftfreq
 import matplotlib.pyplot as plt
 import statistics
 import math
+from scipy.signal import find_peaks
 
 def fft(x, fs):
     """
@@ -57,10 +58,11 @@ def rms(x):
     return rms
 
 
-def generate_statistic_features():
+def generate_statistic_features(t_max):
     # TODO
     """
     Generate statistic features from signals
+    :param t_max: duration of simulation
     :return x_train, y_train: features(statistic data in np.array([])),
                                 labels(np.array([1/0])
     """
@@ -91,10 +93,29 @@ def generate_statistic_features():
     x_median = np.median(vel)
 
     x_stdev = np.std(pos)
-    x_stdev = np.std(vel)
+    y_stdev = np.std(vel)
+
+    x_variance = np.square(x_stdev)
+    y_variance = np.square(y_stdev)
 
     x_min = rms(pos)
     y_min = rms(vel)
+
+    x_f, x_mag = fft(data, get_fs([pos, vel], 0, t_max))
+    y_f, y_mag = fft(data, get_fs([pos, vel], 1, t_max))
+
+    x_f_peaks_idx, _ = find_peaks(x_mag, height=0)
+    y_f_peaks_idx, _ = find_peaks(x_mag, height=0)
+
+    x_f_peaks_idx_sorted = np.argsort(x_f_peaks_idx)
+    y_f_peaks_idx_sorted = np.argsort(y_f_peaks_idx)
+
+    x_f_peaks_idx_max3 = x_f_peaks_idx_sorted[-3:]
+    y_f_peaks_idx_max3 = y_f_peaks_idx_sorted[-3:]
+
+    x_max_freqs = x_f[x_f_peaks_idx_max3]
+    y_max_freqs = y_f[y_f_peaks_idx_max3]
+
 
 
     return x_train, y_train
