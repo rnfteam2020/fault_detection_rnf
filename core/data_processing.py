@@ -53,6 +53,11 @@ def generate_statistic_features():
     # data is in dictionary format
     # data = {'label': 0/1, 'signals': np.array([t,u,y])}
     data = generate_signals_with_labels()
+    """
+    for d in data:
+        for label, signal in d.items():
+            print(f'{label} : {signal}')
+    """
     # data = {'label': 0/1, 'signals': np.array([t,u,[x, y]]])}
 
     x_min = min(data['signals'][2][0])
