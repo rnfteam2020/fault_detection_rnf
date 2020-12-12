@@ -4,7 +4,7 @@ import numpy as np
 from scipy.fft import rfft, rfftfreq
 import matplotlib.pyplot as plt
 import statistics
-import math
+from math import sqrt
 from scipy.signal import find_peaks
 
 def fft(x, fs):
@@ -54,7 +54,7 @@ def rms(x):
     for i in range(len(x)):
         ms = ms + x[i]^2
     ms = ms/len(x)
-    rms = math.sqrt(ms)
+    rms = sqrt(ms)
     return rms
 
 
