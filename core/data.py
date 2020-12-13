@@ -137,9 +137,26 @@ def generate_signals_with_labels():
 
 
 def generate_signals_with_labels_verification():
-    # TODO
     # Stejne jako nad tim 
     # data = 1xHEALTH, 1xFAULT
+
+    # Simulation time parameters
+    t_max = 50
+    n = 5001
+
+    m_hf = np.array([25, 55])
+    k_hf = np.array([1000, 150])
+    b_hf = np.array([100, 0])
+
+    b_pom = b_hf / (2 * np.sqrt(m_hf * k_hf))
+
+    labels = [1 if x < 1 else 0 for x in b_pom]
+
+    dat = list(map(generate_data_from_model, b_hf, k_hf, m_hf))
+
+    data = []
+    for i in range(len(labels)):
+        data.append({labels[i]: dat[i]})
 
     return data, t_max, n
 
