@@ -111,7 +111,7 @@ def generate_statistic_features():
     # x_train, y_train = np.empty(len(data))
 
     x_train = np.zeros((10,20))
-    y_train = np.zeros((10))
+    y_train = np.zeros((10,1))
 
     for i, d in enumerate(data):
         for label, signal in d.items():

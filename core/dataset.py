@@ -3,6 +3,7 @@ Create a dataset
 
 """
 from torch.utils.data import Dataset, DataLoader
+from torch.utils.data.dataset import random_split
 import torch
 from core.data_processing import generate_statistic_features
 
@@ -26,11 +27,20 @@ class CustomDataset(Dataset):
 
 
 def generate_dataset(batch_size=1, shuffle=False, num_workers=1):
-    features, lables = generate_features_labels()
+    features, labels = generate_statistic_features()
     dataset = CustomDataset(features, labels)
-    dataloader = DataLoader(dataset=dataset, batch_size=batch_size,
+
+    train_dataset, val_dataset = random_split(dataset,
+                                                [int(len(dataset)*0.8),
+                                                 int(len(dataset)*0.2)])
+
+    train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size,
             shuffle=shuffle, num_workers=num_workers)
-    return (features.shape, lables.shape), dataloader
+
+    val_loader = DataLoader(dataset=val_dataset, batch_size=batch_size,
+            shuffle=shuffle, num_workers=num_workers)
+
+    return features.shape, labels.shape, train_loader, val_loader
 
 
 if __name__ == "__main__":

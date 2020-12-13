@@ -4,7 +4,6 @@
 import torch
 import torch.nn as nn
 import time
-from progress.bar import Bar
 import core.visualization as vi
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -43,5 +42,5 @@ class FDModel(BaseNN):
 
 
 if __name__ == "__main__":
-    net = FDModel(1,1,4).to(DEVICE)
+    pass
 
