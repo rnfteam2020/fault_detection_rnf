@@ -77,46 +77,49 @@ def generate_statistic_features(t_max):
     """
     # data = {'label': 0/1, 'signals': np.array([t,u,[x, y]]])}
 
-    pos = data['signals'][2][0]     # position
-    vel = data['signals'][2][0]     # velocity
+    for d in data:
+        for label, signal in d.items():
 
-    x_min = np.amin(pos)
-    y_min = np.amin(vel)
+            pos = signal[2][0]     # position
+            vel = signal[2][1]     # velocity
 
-    x_max = np.amax(pos)
-    y_max = np.amax(vel)
+            x_min = np.amin(pos)
+            y_min = np.amin(vel)
 
-    x_mean = np.mean(pos)
-    x_mean = np.mean(vel)
+            x_max = np.amax(pos)
+            y_max = np.amax(vel)
 
-    x_median = np.median(pos)
-    x_median = np.median(vel)
+            x_mean = np.mean(pos)
+            x_mean = np.mean(vel)
 
-    x_stdev = np.std(pos)
-    y_stdev = np.std(vel)
+            x_median = np.median(pos)
+            x_median = np.median(vel)
 
-    x_variance = np.square(x_stdev)
-    y_variance = np.square(y_stdev)
+            x_stdev = np.std(pos)
+            y_stdev = np.std(vel)
 
-    x_rms = rms(pos)
-    y_rms = rms(vel)
+            x_variance = np.square(x_stdev)
+            y_variance = np.square(y_stdev)
 
-    x_f, x_mag = fft(data, get_fs([pos, vel], 0, t_max))
-    y_f, y_mag = fft(data, get_fs([pos, vel], 1, t_max))
+            x_rms = rms(pos)
+            y_rms = rms(vel)
 
-    x_f_peaks_idx, _ = find_peaks(x_mag, height=0)
-    y_f_peaks_idx, _ = find_peaks(x_mag, height=0)
+            x_f, x_mag = fft(data, get_fs([pos, vel], 0, t_max))
+            y_f, y_mag = fft(data, get_fs([pos, vel], 1, t_max))
 
-    x_f_peaks_idx_sorted = np.argsort(x_f_peaks_idx)
-    y_f_peaks_idx_sorted = np.argsort(y_f_peaks_idx)
+            x_f_peaks_idx, _ = find_peaks(x_mag, height=0)
+            y_f_peaks_idx, _ = find_peaks(x_mag, height=0)
 
-    x_f_peaks_idx_max3 = x_f_peaks_idx_sorted[-3:]
-    y_f_peaks_idx_max3 = y_f_peaks_idx_sorted[-3:]
+            x_f_peaks_idx_sorted = np.argsort(x_f_peaks_idx)
+            y_f_peaks_idx_sorted = np.argsort(y_f_peaks_idx)
 
-    x_max_freqs = x_f[x_f_peaks_idx_max3]
-    y_max_freqs = y_f[y_f_peaks_idx_max3]
+            x_f_peaks_idx_max3 = x_f_peaks_idx_sorted[-3:]
+            y_f_peaks_idx_max3 = y_f_peaks_idx_sorted[-3:]
 
-    x_train = {'Min': x_min }
+            x_max_freqs = x_f[x_f_peaks_idx_max3]
+            y_max_freqs = y_f[y_f_peaks_idx_max3]
+
+            x_train = {'Min': x_min }
 
     return x_train, y_train
 
