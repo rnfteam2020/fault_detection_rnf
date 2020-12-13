@@ -104,7 +104,7 @@ def generate_signals_with_labels():
 
     m_max = 500
     m_min = 10
-    m_N = 10
+    m_N = 100
     m_arr = np.linspace(m_min, m_max, m_N)
 
     k_max = 5000
