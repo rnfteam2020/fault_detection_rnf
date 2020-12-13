@@ -136,9 +136,12 @@ def generate_signals_with_labels():
     return data, t_max, n
 
 
-def verification(net, u):
+def generate_signals_with_labels_verification():
     # TODO
-    pass
+    # Stejne jako nad tim 
+    # data = 1xHEALTH, 1xFAULT
+
+    return data, t_max, n
 
 if __name__ == "__main__":
     data, t_max, n = generate_signals_with_labels()

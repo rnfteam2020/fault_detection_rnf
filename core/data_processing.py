@@ -110,8 +110,8 @@ def generate_statistic_features():
     # ?????
     # x_train, y_train = np.empty(len(data))
 
-    x_train = np.zeros((10,20))
-    y_train = np.zeros((10,1))
+    x_train = np.zeros((100,20))
+    y_train = np.zeros((100,1))
 
     for i, d in enumerate(data):
         for label, signal in d.items():
@@ -123,6 +123,12 @@ def generate_statistic_features():
             y_train[i] = np.array(label)
 
     return x_train, y_train
+
+def generate_verification_data():
+    # TODO
+    data, t_max, _ = generate_signals_with_labels_verification()
+
+    return x_verif, y_verif
 
 
 if __name__ == "__main__":

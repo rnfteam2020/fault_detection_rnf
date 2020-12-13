@@ -18,13 +18,13 @@ def train():
 
     net = FDModel(20,1,16).to(DEVICE)
     epochs, losses_data, val_losses_data = fit(net, datasets, batch_size=batch_size,
-                                               epochs=200)
+                                               epochs=300)
     vi.plot_loss(epochs, losses_data)
     vi.plot_loss(epochs, val_losses_data)
-    net.save('demo_net')
+    # net.save('demo_net')
 
-def run():
-    pass
+def run(path2net):
+    net = FDModel(20,1,16).load(path2net)
 
 if __name__ == "__main__":
     train()
