@@ -90,10 +90,10 @@ def generate_statistic_features(t_max):
             y_max = np.amax(vel)
 
             x_mean = np.mean(pos)
-            x_mean = np.mean(vel)
+            y_mean = np.mean(vel)
 
             x_median = np.median(pos)
-            x_median = np.median(vel)
+            y_median = np.median(vel)
 
             x_stdev = np.std(pos)
             y_stdev = np.std(vel)
@@ -119,7 +119,8 @@ def generate_statistic_features(t_max):
             x_max_freqs = x_f[x_f_peaks_idx_max3]
             y_max_freqs = y_f[y_f_peaks_idx_max3]
 
-            x_train = {'Min': x_min }
+        x_train = np.array([x_min, x_max, x_mean, x_median, x_stdev, x_variance, x_rms, x_max_freqs])
+        y_train = np.array([y_min, y_max, y_mean, y_median, y_stdev, y_variance, y_rms, y_max_freqs])
 
     return x_train, y_train
 
