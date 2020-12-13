@@ -3,9 +3,9 @@ import os
 import numpy as np
 from scipy.fft import rfft, rfftfreq
 import matplotlib.pyplot as plt
-import statistics
 from math import sqrt
 from scipy.signal import find_peaks
+
 
 def fft(x, fs):
     """
@@ -16,9 +16,9 @@ def fft(x, fs):
     :return: frequency [Hz], magnitude
     """
 
-    N = len(x)
+    n = len(x)
     y = np.abs(rfft(x))
-    f = rfftfreq(N, 1/fs)
+    f = rfftfreq(n, 1/fs)
     return f, y
 
 
@@ -30,16 +30,15 @@ def plot_fft(x, y):
     plt.show()
 
 
-def get_fs(data, axis, duration):
+def get_fs(x, duration):
     """
     returns sampling rate of input data
 
-    :param data: input data sets (list)
-    :param axis: index of desired axes {0, 1, 2, ...}
+    :param x: input data set (list)
     :param duration: duration of measurement [s]
     :return: sampling rate [Hz]
     """
-    f_s = len(data[axis])//duration
+    f_s = len(x)//duration
     return f_s
 
 
@@ -52,41 +51,54 @@ def rms(x):
     """
     ms = 0
     for i in range(len(x)):
-        ms = ms + x[i]^2
+        ms = ms + x[i] ^ 2
     ms = ms/len(x)
     rms = sqrt(ms)
     return rms
 
 
-def function(x)
-    x_min = np.amin(x)
+def calc_statistics(pos, vel, t_max):
+    """
+    calculates statistics from two input signals
+    :param pos: first signal - position
+    :param vel: second signal - velocity
+    :param t_max: simulation duration (from data generation)
+    :return: stat_data_pos, stat_data_vel: stacked statical data for position and velocity
+             [min, max, mean, median, stdev, variance, rms, max_freqs]
+    """
+    xy_min = np.stack(np.amin(pos), np.amin(vel))
 
-    x_max = np.amax(x)
+    xy_max = np.stack(np.amax(pos), np.amax(vel))
 
-    x_mean = np.mean(x)
+    xy_mean = np.stack(np.mean(pos), np.mean(vel))
 
-    x_median = np.median(x)
+    xy_median = np.stack(np.median(pos), np.median(vel))
 
-    x_stdev = np.std(x)
+    xy_stdev = np.stack(np.std(pos), np.std(vel))
 
-    x_variance = np.square(x_stdev)
+    xy_variance = np.stack(np.square(xy_stdev[0]), np.square(xy_stdev[1]))
 
-    x_rms = rms(pos)
+    xy_rms = np.stack(rms(pos), rms(vel))
 
-    x_f, x_mag = fft(data, get_fs([pos, vel], 0, t_max))
+    xy_f_mag = np.stack(fft(pos, get_fs(pos, t_max)), fft(vel, get_fs(vel, t_max)))
 
-    x_f_peaks_idx, _ = find_peaks(x_mag, height=0)
+    xy_f_peaks_idx, _ = np.stack(find_peaks(xy_f_mag[0], height=0), find_peaks(xy_f_mag[1], height=0))
 
-    x_f_peaks_idx_sorted = np.argsort(x_f_peaks_idx)
+    xy_f_peaks_idx_sorted = np.stack(np.argsort(xy_f_peaks_idx[0]), np.argsort(xy_f_peaks_idx[1]))
 
-    x_f_peaks_idx_max3 = x_f_peaks_idx_sorted[-3:]
+    xy_f_peaks_idx_max3 = np.stack(xy_f_peaks_idx_sorted[0][-3:], xy_f_peaks_idx_sorted[1][-3:])
 
-    x_max_freqs = x_f[x_f_peaks_idx_max3]
-    return np.asarray([])
+    xy_max_freqs = np.stack(xy_f_mag[0][xy_f_peaks_idx_max3[0]], xy_f_mag[1][xy_f_peaks_idx_max3[1]])
+
+    stat_data_pos = np.stack(xy_min[0], xy_max[0], xy_mean[0], xy_median[0], xy_stdev[0], xy_variance[0], xy_rms[0],
+                             xy_max_freqs[0])
+    stat_data_vel = np.stack(xy_min[1], xy_max[1], xy_mean[1], xy_median[1], xy_stdev[1], xy_variance[1], xy_rms[1],
+                             xy_max_freqs[1])
+
+    return stat_data_pos, stat_data_vel
 
 
 def generate_statistic_features(t_max):
-    # TODO
     """
     Generate statistic features from signals
     :param t_max: duration of simulation
@@ -97,73 +109,29 @@ def generate_statistic_features(t_max):
     # data is in dictionary format
     # data = {'label': 0/1, 'signals': np.array([t,u,y])}
     data = generate_signals_with_labels()
-    """
-    for d in data:
-        for label, signal in d.items():
-            print(f'{label} : {signal}')
-    """
-    # data = {'label': 0/1, 'signals': np.array([t,u,[x, y]]])}
 
+    # stat_data_pos, stat_data_vel = np.empty(len(data))
+    x_train, y_train = np.empty(len(data))
     for d in data:
+
         for label, signal in d.items():
 
             pos = signal[2][0]     # position
             vel = signal[2][1]     # velocity
 
-            x_min = np.amin(pos)
-            y_min = np.amin(vel)
-
-            x_max = np.amax(pos)
-            y_max = np.amax(vel)
-
-            x_mean = np.mean(pos)
-            y_mean = np.mean(vel)
-
-            x_median = np.median(pos)
-            y_median = np.median(vel)
-
-            x_stdev = np.std(pos)
-            y_stdev = np.std(vel)
-
-            x_variance = np.square(x_stdev)
-            y_variance = np.square(y_stdev)
-
-            x_rms = rms(pos)
-            y_rms = rms(vel)
-
-            x_f, x_mag = fft(data, get_fs([pos, vel], 0, t_max))
-            y_f, y_mag = fft(data, get_fs([pos, vel], 1, t_max))
-
-            x_f_peaks_idx, _ = find_peaks(x_mag, height=0)
-            y_f_peaks_idx, _ = find_peaks(x_mag, height=0)
-
-            x_f_peaks_idx_sorted = np.argsort(x_f_peaks_idx)
-            y_f_peaks_idx_sorted = np.argsort(y_f_peaks_idx)
-
-            x_f_peaks_idx_max3 = x_f_peaks_idx_sorted[-3:]
-            y_f_peaks_idx_max3 = y_f_peaks_idx_sorted[-3:]
-
-            x_max_freqs = x_f[x_f_peaks_idx_max3]
-            y_max_freqs = y_f[y_f_peaks_idx_max3]
-
-        x_train = np.array([x_min, x_max, x_mean, x_median, x_stdev, x_variance, x_rms, x_max_freqs])
-        y_train = np.array([y_min, y_max, y_mean, y_median, y_stdev, y_variance, y_rms, y_max_freqs])
-
-            # x_train[i] = np.stack(function(pos),function(vel))
-            # y_train[i] = np.asarray(label)
-
+            stat_data_pos, stat_data_vel = calc_statistics(pos, vel, t_max)
+            x_train[d] = np.stack(stat_data_pos, stat_data_vel)
+            y_train[d] = np.asarray(label)
 
     return x_train, y_train
 
 
-
 if __name__ == "__main__":
     path = os.getcwd()
-    data = data.load(path+'/data/data_RAE.csv')
-    print(data)
-
-    f_s = get_fs(data, 'x', 8)
-    print(f_s)
-    f, y = fft(data['x'], f_s)
-    plot_fft(f, y)
-
+    # data = data.load(path+'/data/data_RAE.csv')
+    # print(data)
+    #
+    # f_s = get_fs(data, 8)
+    # print(f_s)
+    # f, y = fft(data['x'], f_s)
+    # plot_fft(f, y)
