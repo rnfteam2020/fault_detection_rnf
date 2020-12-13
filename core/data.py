@@ -98,6 +98,10 @@ def generate_signals_with_labels():
     :return data: data = {'label': 0/1, 'signals': np.array([t,u,y])}
 
     """
+    # Simulation time parameters
+    t_max = 50
+    n = 5001
+
     m_max = 500
     m_min = 10
     m_N = 10
@@ -129,7 +133,7 @@ def generate_signals_with_labels():
     for i in range(len(labels)):
         data.append({labels[i]:dat[i]})
 
-    return data
+    return data, t_max, n
 
 
 def verification(net, u):
@@ -137,8 +141,11 @@ def verification(net, u):
     pass
 
 if __name__ == "__main__":
-    data = generate_signals_with_labels()
+    data, t_max, n = generate_signals_with_labels()
+    print(t_max)
+    print(n)
     for d in data:
         for label, signal in d.items():
             print(f'{label} : {signal}')
+            print(signal[2][:,0])
 

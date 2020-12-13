@@ -20,4 +20,6 @@ def run():
     pass
 
 if __name__ == "__main__":
-    pass
+    from core.data_processing import generate_statistic_features
+    x_train, y_train = generate_statistic_features()
+    print(f'{x_train}, {y_train}')
