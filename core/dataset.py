@@ -30,7 +30,7 @@ def generate_dataset(batch_size=1, shuffle=False, num_workers=1):
     dataset = CustomDataset(features, labels)
     dataloader = DataLoader(dataset=dataset, batch_size=batch_size,
             shuffle=shuffle, num_workers=num_workers)
-    return dataloader
+    return (features.shape, lables.shape), dataloader
 
 
 if __name__ == "__main__":
