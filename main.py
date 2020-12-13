@@ -8,13 +8,13 @@ from core.nn_models import FDModel
 import core.visualization as vi
 
 def train():
-    train_loader = generate_dataset(batch_size=1, shuffle=False,
-            num_workers=1)
+    batch_size = 1
+    shape, train_loader = generate_dataset(batch_size=batch_size, shuffle=False,
+                                           num_workers=1)
 
-    dataset_shape = train_loader
     net = FDModel()
-
-    loss_data = fit()
+    epochs, losses_data = fit(net, train_loader, batch_size=batch_size)
+    vi.plot_loss(epochs, losses_data)
 
 def run():
     pass

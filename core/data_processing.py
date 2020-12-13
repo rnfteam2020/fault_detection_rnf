@@ -58,6 +58,33 @@ def rms(x):
     return rms
 
 
+def function(x)
+    x_min = np.amin(x)
+
+    x_max = np.amax(x)
+
+    x_mean = np.mean(x)
+
+    x_median = np.median(x)
+
+    x_stdev = np.std(x)
+
+    x_variance = np.square(x_stdev)
+
+    x_rms = rms(pos)
+
+    x_f, x_mag = fft(data, get_fs([pos, vel], 0, t_max))
+
+    x_f_peaks_idx, _ = find_peaks(x_mag, height=0)
+
+    x_f_peaks_idx_sorted = np.argsort(x_f_peaks_idx)
+
+    x_f_peaks_idx_max3 = x_f_peaks_idx_sorted[-3:]
+
+    x_max_freqs = x_f[x_f_peaks_idx_max3]
+    return np.asarray([])
+
+
 def generate_statistic_features(t_max):
     # TODO
     """
@@ -120,6 +147,10 @@ def generate_statistic_features(t_max):
             y_max_freqs = y_f[y_f_peaks_idx_max3]
 
             x_train = {'Min': x_min }
+
+            # x_train[i] = np.stack(function(pos),function(vel))
+            # y_train[i] = np.asarray(label)
+
 
     return x_train, y_train
 

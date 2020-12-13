@@ -47,7 +47,7 @@ def fit(net, dataset, lr=0.05, epochs=1000, batch_size=None):
 
     bar.finish()
 
-    vi.plot_loss(epochs, losses_data)
+    return epochs, losses_data
 
 if __name__ == "__main__":
     pass
