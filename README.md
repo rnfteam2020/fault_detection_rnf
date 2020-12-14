@@ -8,11 +8,11 @@
 - Jan Hrůzek
 
 ## Instalace 
-- install dependencies
+- Instalace potřebnách balíčků:
 ```shell
 pip install -r requirements.txt
 ```
-- install [PyTorch](https://pytorch.org/get-started/locally/)
+- Instalace [PyTorch](https://pytorch.org/get-started/locally/)
 
 ## Model a generování dat
 Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělesa, pružiny a tlumiče. Parametry tohoto
@@ -68,9 +68,9 @@ vrstvou.
       Aktivační funkce: sigmoid
       Optimizator: Adam 
       Loss function: MSELoss 
-      learning rate: 0,05 
-      počet epoch: 500 
-      velikost batch: 5
+      Learning rate: 0,05 
+      Počet epoch: 500 
+      Velikost batch: 5
 
 Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch a na počtu epoch. Výsledky trénování jsou
 zobrazeny v následující části.
