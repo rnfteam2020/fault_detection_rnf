@@ -8,7 +8,12 @@
 - Jan Hrůzek
 
 ## Model a generování dat
-Byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b*. Model je popsán následující differenciální rovnicí:
+Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle následujícího obrázku)
+
+<img src="readme_img/model_img.png" width="300" height="300">
+
+
+Model je popsán differenciální rovnicí:
 
 ![](readme_img/model_eq.png)
 
