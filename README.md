@@ -47,7 +47,7 @@ Pro vytvoření neuronové sítě byl použit nástroj PyTorch. Byl vytvořen mo
       počet epoch: 300 
       velikost batch: 10
 
-Trénování neuronové sítě probíhalo 
+Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch a na počtu epoch. Výsledky trénování jsou zobrazené v následující části. 
 
 ## Výsledky
 
@@ -59,7 +59,7 @@ pip install -r requirements.txt
 ```
 - install [PyTorch](https://pytorch.org/get-started/locally/)
 
-## Sources
+## Zdroje
 - [wiki](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)
 - [PyTorch: nn](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#pytorch-nn)
 - [link](https://www.sciencedirect.com/science/article/pii/S1876610218304831)
