@@ -75,9 +75,11 @@ zobrazeny v následující části.
 
 ## Výsledky
 
+Následující grafy přestavují chování neuronové sítě při známých vstupních a neznámých vstupních datech.
 <img src="doc/img/loss.png">
 <img src="doc/img/eval.png">
 
+Při testovacím běhu neuronové sítě byly dosaženy následující výsledky:
 ```shell
 [TEST] CASE 1 "Health data" : label=1.0 net_output=0.9970
 [TEST] CASE 2 "Fault data " : label=0.0 net_output=0.0000
