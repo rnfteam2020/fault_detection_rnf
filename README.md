@@ -7,13 +7,6 @@
 - Jan Bolcek
 - Jan Hrůzek
 
-## Instalace 
-- install dependencies
-```shell
-pip install -r requirements.txt
-```
-- install [PyTorch](https://pytorch.org/get-started/locally/)>
-
 ## Model a generování dat
 Byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b*.
 Oscilátor byl buzen silou *F* o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
@@ -43,6 +36,12 @@ Pro vytvoření neuronové sítě byl použit nástroj PyTorch, který pro své 
 
 ## Výsledky
 
+## Instalace 
+- install dependencies
+```shell
+pip install -r requirements.txt
+```
+- install [PyTorch](https://pytorch.org/get-started/locally/)>
 
 ## File structure
 
