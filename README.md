@@ -1,14 +1,39 @@
-# Fault detection RNF project
+# RNF project: Detekce chyby
 
-## Description 
-deadline - 15.12.2020
+###### Zpracovali: 
+- Artyom Voronin
+- Martin Havelka
+- Tomáš Kopčil
+- Jan Bolcek
+- Jan Hrůzek
 
-## Installation 
+<## Instalace 
 - install dependencies
 ```shell
 pip install -r requirements.txt
 ```
-- install [PyTorch](https://pytorch.org/get-started/locally/)
+- install [PyTorch](https://pytorch.org/get-started/locally/)>
+
+## Model a generování dat
+Byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b*.
+Oscilátor byl buzen silou *F* o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
+
+###### Generování korektních a chybných dat
+Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena jako korektní.
+Jako chybná byla uvažována situace, kdy je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená a nedochází ke kmitání. Taková data pak byla označena jako chybná.
+
+## Statistické zpracování dat
+Pro každý balík naměřených dat byla zpracována statistická analýza. Určeny byly následující statistické parametry:
+- minimum
+- maximum
+- aritmetický průměr
+- medián
+- standardní odchylka
+- rozptyl
+- RMS
+- Fourierova transformace pomocí FFT algoritmu a následně vybrány 3 nejvíce dominantní frekvence.
+
+Tyto parametry byly zabaleny společně s označením, zda se jedná o chybná, nebo korektní data, a následně použita jako vstup pro neuronovou síť.
 
 ## Files structure
 
