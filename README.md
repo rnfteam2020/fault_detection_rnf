@@ -8,10 +8,9 @@
 - Jan Hrůzek
 
 ## Model a generování dat
-Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto
-systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle následujícího obrázku)  
+Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle následujícího obrázku)
 
-<img align="right" src="readme_img/harmonic_oscillator.png">  
+<img src="readme_img/harmonic_oscillator.png">
 
 Model je popsán differenciální rovnicí:
 
@@ -20,10 +19,8 @@ Model je popsán differenciální rovnicí:
 Oscilátor byl buzen signálem u(t) o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
 
 #### Generování korektních a chybných dat
-Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena
-jako korektní.
-Jako chybná byla uvažována situace, kdy je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená
-a nedochází ke kmitání. Dále také situace kdy je jeden z parametrů k,b = 0. 
+Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena jako korektní.
+Jako chybná byla uvažována situace, kdy je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená a nedochází ke kmitání. Dále také situace kdy je jeden z parametrů k,b = 0. 
 
 ## Statistické zpracování dat
 Pro každý balík naměřených dat byla zpracována statistická analýza. Určeny byly následující statistické parametry:
@@ -36,19 +33,13 @@ Pro každý balík naměřených dat byla zpracována statistická analýza. Ur�
 - RMS
 - Fourierova transformace pomocí FFT algoritmu a následně vybrány 3 nejvíce dominantní frekvence.
 
-Tyto parametry byly zabaleny společně s označením (label), zda se jedná o chybná, nebo korektní data, a následně
-použita jako dataset pro neuronovou síť.
-Pro práci s daty byla využity struktury knihovny *numpy*, které je následně Pytorch schopen zkonvertovat do svého
-formátu.
+Tyto parametry byly zabaleny společně s označením (label), zda se jedná o chybná, nebo korektní data, a následně použita jako dataset pro neuronovou síť.
+Pro práci s daty byla využity struktury knihovny *numpy*, které je následně Pytorch schopen zkonvertovat do svého formátu.
 ## Dataset
-Ze statisticky zpracovaných dat byl vytvořen dataset, který odpovídá vstupům neuronové sítě. Jedná se o tensor,  
-který obsahuje hodnoty features (statistické parametry) a labels (označení správných a chybných dat, 1/0). Následně byl
-dataset rozdělen na trénovací a validační data v poměru 80% ku 20%. Takto rozdělený dataset byl dále použit v neuronové
-síti.
+Ze statisticky zpracovaných dat byl vytvořen dataset, který odpovídá vstupům neuronové sítě. Jedná se o tensor, který obsahuje hodnoty features (statistické parametry) a labels (označení správných a chybných dat, 1/0). Následně byl dataset rozdělen na trénovací a validační data v poměru 80% ku 20%. Takto rozdělený dataset byl dále použit v neuronové síti.
 
 ## Neurová síť
-Pro vytvoření neuronové sítě byl použit nástroj PyTorch. Byl vytvořen model s jednou vstupní, skrytou a výstupní
-vrstvou.  
+Pro vytvoření neuronové sítě byl použit nástroj PyTorch. Byl vytvořen model s jednou vstupní, skrytou a výstupní vrstvou.  
 
   #### Velikost vsrtev:
       Vstupní vrstva: 20
@@ -63,8 +54,7 @@ vrstvou.
       počet epoch: 300 
       velikost batch: 10
 
-Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch a na počtu epoch. Výsledky trénování jsou
-zobrazené v následující části. 
+Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch a na počtu epoch. Výsledky trénování jsou zobrazené v následující části. 
 
 ## Výsledky
 
@@ -72,8 +62,8 @@ zobrazené v následující části.
 Pro detekci chyb pomocí neuronové sítě byl vytvořen model po generování dat. Na tomto modelu byla vygenerována data
 označená jako korektní i chybná. Tato data byla statisticky zpracována pro neuronovou síť, která jimi byla následně
 natrénována.  
-Neuronová síť byla vytvořena pomocí nástroje PyTorch, která obshovala 20 neuronů ve vstupní vrstvě, 16 neuronů  
-ve skryté vrtsvě a 1 neuron ve výstupní vrstvě.
+Neuronová síť byla vytvořena pomocí nástroje PyTorch, která obshovala 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
+vrtsvě a 1 neuron ve výstupní vrstvě.
 Byla také vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
 
 ## Instalace 
