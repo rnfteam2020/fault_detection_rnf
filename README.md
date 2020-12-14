@@ -70,8 +70,8 @@ zobrazeny v následující části.
 
 
 ```shell
-[TEST] CASE 1 "Health data" : label=1.0 net_output=1.00
-[TEST] CASE 2 "Fault data " : label=0.0 net_output=0.00
+[TEST] CASE 1 "Health data" : label=1.0 net_output=0.9970
+[TEST] CASE 2 "Fault data " : label=0.0 net_output=0.0000
 ```
 
 ## Závěr

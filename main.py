@@ -47,7 +47,7 @@ def run(path2net):
         x = torch.from_numpy(x).float().to(DEVICE)
         y = torch.from_numpy(y).float().to(DEVICE)
         title = 'Health data' if i == 0 else 'Fault data '
-        print(f'[TEST] CASE {i+1} "{title}" : label={y[0]} net_output={net(x)[0]:.2f}')
+        print(f'[TEST] CASE {i+1} "{title}" : label={y[0]} net_output={net(x)[0]:.4f}')
 
 
 
