@@ -10,6 +10,8 @@
 ## Model a generování dat
 Byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b*.
 Oscilátor byl buzen silou *F* o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
+![](readme_img/harmonic_oscillator.png =250x250)
+<img src="https://https://github.com/rnfteam2020/fault_detection_rnf/blob/main/readme_img/harmonic_oscillator.png" width="200">
 
 #### Generování korektních a chybných dat
 Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena jako korektní.
