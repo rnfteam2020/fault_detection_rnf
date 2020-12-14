@@ -35,17 +35,17 @@ Ze statisticky zpracovaných dat byl vytvořen dataset, který odpovídá vstup�
 Pro vytvoření neuronové sítě byl použit nástroj PyTorch. Byl vytvořen model s jednou vstupní, skrytou a výstupní vrstvou.  
 
   #### Velikost vsrtev:
-    - Vstupní vrstva: 20
-    - Skrytá vrstva: 16
-    - Výstupní vrstva: 1
+      Vstupní vrstva: 20
+      Skrytá vrstva: 16
+      Výstupní vrstva: 1
 
   #### Parametry sítě:
-    - Aktivační funkce: sigmoid
-    - Optimizator: Adam 
-    - Loss function: MSELoss 
-    - learning rate: 0,05 
-    - počet epoch: 300 
-    - velikost batch: 10
+      Aktivační funkce: sigmoid
+      Optimizator: Adam 
+      Loss function: MSELoss 
+      learning rate: 0,05 
+      počet epoch: 300 
+      velikost batch: 10
 
 Trénování neuronové sítě probíhalo 
 
