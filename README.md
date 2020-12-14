@@ -41,7 +41,7 @@ Pro vytvoření neuronové sítě byl použit nástroj PyTorch, který pro své 
 ```shell
 pip install -r requirements.txt
 ```
-- install [PyTorch](https://pytorch.org/get-started/locally/)>
+- install [PyTorch](https://pytorch.org/get-started/locally/)
 
 ## File structure
 
