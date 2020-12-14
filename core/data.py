@@ -153,14 +153,16 @@ def generate_signals_with_labels_verification():
 
     b_pom = b_hf / (2 * np.sqrt(m_hf * k_hf))
 
-    labels = [1 if x < 1 else 0 for x in b_pom]
+    k_treshold  = 1
+    b_treshold  = 0
+
+    labels = [1 if (x < 1 and k_hf[id_x] > k_treshold and b_hf[id_x] > b_treshold) else 0 for id_x,x in enumerate(b_pom)]
 
     dat = list(map(generate_data_from_model, b_hf, k_hf, m_hf))
 
     data = []
     for i in range(len(labels)):
         data.append({labels[i]: dat[i]})
-
     return data, t_max, n
 
 if __name__ == "__main__":

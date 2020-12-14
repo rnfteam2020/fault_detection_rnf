@@ -4,7 +4,6 @@
 import torch
 import torch.nn as nn
 import time
-import core.visualization as vi
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
@@ -14,16 +13,16 @@ class BaseNN(torch.nn.Module):
         super().__init__()
         self.model_name = str(self)
 
-    def load(self, path):
+    def load_net(self, path):
         self.load_state_dict(torch.load(path))
 
-    def save(self, name:str):
+    def save_net(self, name):
         if name is None:
-            prefix = self.model_name + '_'
-            name = time.strftime(prefix + '%m%d_%H_%M_%S.pth')
+            prefix = self.model_name
+            name = prefix + '.pt'
         else:
-            prefix = name + '_'
-            name = time.strftime(prefix + '%m%d_%H_%M_%S.pth')
+            prefix = name
+            name = prefix + '.pt'
         torch.save(self.state_dict(), name)
         return name
 

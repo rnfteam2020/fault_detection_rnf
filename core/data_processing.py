@@ -1,4 +1,5 @@
-from core.data import generate_signals_with_labels
+from core.data import (generate_signals_with_labels,
+                    generate_signals_with_labels_verification)
 import numpy as np
 from scipy.fft import rfft, rfftfreq
 from scipy.signal import find_peaks
@@ -125,13 +126,25 @@ def generate_statistic_features():
     return x_train, y_train
 
 def generate_verification_data():
-    # TODO
     data, t_max, _ = generate_signals_with_labels_verification()
 
-    return x_verif, y_verif
+    x_verif = np.zeros((2,20))
+    y_verif = np.zeros((2,1))
+
+    signals_data = []
+    for i, d in enumerate(data):
+        for label, signal in d.items():
+            signals_data.append(signal)
+
+            pos = signal[2][:,0]     # position
+            vel = signal[2][:,1]     # velocity
+
+            x_verif[i] = np.concatenate((calc_statistics(pos, t_max), calc_statistics(vel, t_max)))
+            y_verif[i] = np.array(label)
+
+    return x_verif, y_verif, signals_data
 
 
 if __name__ == "__main__":
-    x_train, y_train = generate_statistic_features()
-    print(x_train, y_train)
+    x_train, y_train = generate_verification_data()
 
