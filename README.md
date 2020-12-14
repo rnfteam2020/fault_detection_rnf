@@ -22,8 +22,8 @@ Oscilátor byl buzen signálem u(t) o průběhu "step" a sinus a měrena byla v�
 #### Generování korektních a chybných dat
 Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena
 jako korektní.
-Jako chybná byla uvažována situace, kdy se v praxi "utrhne" pružina nebo tlumič, tedy *k=0* nebo *b=0*. Dále také, pokud
-je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená a nedochází ke kmitání. 
+Jako chybná byla uvažována situace, kdy se v praxi "utrhne" pružina nebo tlumič, tedy *k = 0* nebo *b = 0*. Dále také,
+pokud je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená a nedochází ke kmitání. 
 
 ## Statistické zpracování dat
 Pro každý balík naměřených dat byla zpracována statistická analýza. Určeny byly následující statistické parametry:
