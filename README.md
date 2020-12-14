@@ -7,6 +7,13 @@
 - Jan Bolcek
 - Jan Hrůzek
 
+## Instalace 
+- install dependencies
+```shell
+pip install -r requirements.txt
+```
+- install [PyTorch](https://pytorch.org/get-started/locally/)
+
 ## Model a generování dat
 Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělesa, pružiny a tlumiče. Parametry tohoto
 systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle přiloženého obrázku).
@@ -75,8 +82,14 @@ zobrazeny v následující části.
 [TEST] CASE 1 "Health data" : label=1.0 net_output=0.9970
 [TEST] CASE 2 "Fault data " : label=0.0 net_output=0.0000
 ```
-
+Na modelu byla vygenerována korektní i chybná data pro verifikaci funkčnosti neuronové sítě. Tato data jsou zobrazena
+na následujících obrázcích.
+První obrázek zobrazuje výchylku a rychlost tělesa v čase pro korektní, plně funkční, model. Jak
+jde vidět, rychlost a výchylka jsou vůči sobě fázově posunuty a poměrně rychle se ustálí – jedná se o odezvu na
+skok, na který tlumená soustava reaguje postupným ustálením.
 <img src="doc/img/health.png">
+Druhý obrázek zobrazuje situaci pro chybný model, konkrétně případ, kdy se "utrhnul" tlumič a tlumení soustavy je tedy
+nulové. V tomto případě proto nedochází k ustálení a soustava kmitá dále se stejnou amplitudou.
 <img src="doc/img/fault.png">
 
 ## Závěr
@@ -86,13 +99,6 @@ natrénována.
 Neuronová síť byla vytvořena pomocí nástroje PyTorch, která obsahovala 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
 vrstvě a 1 neuron ve výstupní vrstvě.
 Byla také vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
-
-## Instalace 
-- install dependencies
-```shell
-pip install -r requirements.txt
-```
-- install [PyTorch](https://pytorch.org/get-started/locally/)
 
 ## Zdroje
 - [wiki](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)
