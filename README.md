@@ -97,12 +97,10 @@ nulové. V tomto případě proto nedochází k ustálení a soustava kmitá dá
 <img src="doc/img/fault.png">
 
 ## Závěr
-Pro detekci chyb pomocí neuronové sítě byl vytvořen model po generování dat. Na tomto modelu byla vygenerována data
-označená jako korektní i chybná. Tato data byla statisticky zpracována pro neuronovou síť, která jimi byla následně
-natrénována.  
-Neuronová síť byla vytvořena pomocí nástroje PyTorch, která obsahovala 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
-vrstvě a 1 neuron ve výstupní vrstvě.
-Byla také vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
+Pro detekci chyb na základě signálu (signal based fault detection) pomocí neuronové sítě byl vytvořen model, který byl použit pro generování dat. Na tomto modelu byla vygenerována data, která byla následně označena jako korektní a chybná. Tato data byla statisticky zpracována pro neuronovou síť, který byla poté pomocí těchto statistik a labelů natrénována.  
+Neuronová síť, která byla vytvořena pomocí nástroje PyTorch, obsahuje 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
+vrstvě a 1 neuron ve výstupní vrstvě a v rámci její aplikace byla použita sigmoidní aktivační funkce.
+Nakonec byl proveden testovací běh neuronové sítě a byla vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
 
 ## Zdroje
 - [wiki: Fault detection and isolation](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)
