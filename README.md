@@ -97,7 +97,7 @@ nulové. V tomto případě proto nedochází k ustálení a soustava kmitá dá
 <img src="doc/img/fault.png">
 
 ## Závěr
-Pro detekci chyb na základě signálu (signal based fault detection) pomocí neuronové sítě byl vytvořen model, který byl použit pro generování dat. Na tomto modelu byla vygenerována data, která byla následně označena jako korektní a chybná. Tato data byla statisticky zpracována pro neuronovou síť, který byla poté pomocí těchto statistik a labelů natrénována.  
+Pro detekci chyb na základě signálu (signal based fault detection) pomocí neuronové sítě byl vytvořen model, který byl použit pro generování dat. Tato vygenerována data ve formě signálů byla následně označena jako korektní a chybná a byla statisticky zpracována pro neuronovou síť. Poté proběhlo učení neuronové sitě na základě těchto statiských dat a labelů.  
 Neuronová síť, která byla vytvořena pomocí nástroje PyTorch, obsahuje 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
 vrstvě a 1 neuron ve výstupní vrstvě a v rámci její aplikace byla použita sigmoidní aktivační funkce.
 Nakonec byl proveden testovací běh neuronové sítě a byla vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
