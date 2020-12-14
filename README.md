@@ -11,11 +11,11 @@
 Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto
 systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle následujícího obrázku)
 
-<img src="readme_img/harmonic_oscillator.png">
+<img src="doc/img/harmonic_oscillator.png">
 
 Model je popsán differenciální rovnicí:
 
-![](readme_img/model_eq.png)
+![](doc/img/model_eq.png)
 
 Oscilátor byl buzen signálem *u(t)* o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
 
@@ -60,8 +60,8 @@ vrstvou.
       Optimizator: Adam 
       Loss function: MSELoss 
       learning rate: 0,05 
-      počet epoch: 300 
-      velikost batch: 10
+      počet epoch: 500 
+      velikost batch: 5
 
 Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch a na počtu epoch. Výsledky trénování jsou
 zobrazeny v následující části. 
