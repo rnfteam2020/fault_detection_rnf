@@ -35,6 +35,12 @@ Pro každý balík naměřených dat byla zpracována statistická analýza. Ur�
 
 Tyto parametry byly zabaleny společně s označením, zda se jedná o chybná, nebo korektní data, a následně použita jako vstup pro neuronovou síť.
 
+## Dataset
+Ze statisticky zpracovaných dat byl vytvořen dataset, který odpovídá vstupům neuronové sítě. Jedná se o tensor, který obsahuje hodnoty features (statistické parametry) a labels (označení správných a chybnách dat, 1/0). Následně byl dataset rozdělen na trénovací a validační data v poměru 80% ku 20%. 
+
+## Neurová síť
+Pro vytvoření neuronové sítě byl použit nástroj PyTorch, který pro své modely využívá tensory. 
+
 ## Files structure
 
 ### core:
