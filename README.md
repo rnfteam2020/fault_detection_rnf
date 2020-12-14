@@ -1,6 +1,6 @@
 # RNF project: Detekce chyby
 
-###### Zpracovali: 
+#### Zpracovali: 
 - Artyom Voronin
 - Martin Havelka
 - Tomáš Kopčil
@@ -18,7 +18,7 @@ pip install -r requirements.txt
 Byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b*.
 Oscilátor byl buzen silou *F* o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
 
-###### Generování korektních a chybných dat
+#### Generování korektních a chybných dat
 Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena jako korektní.
 Jako chybná byla uvažována situace, kdy je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená a nedochází ke kmitání. Taková data pak byla označena jako chybná.
 
