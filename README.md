@@ -8,8 +8,16 @@
 - Jan Hrůzek
 
 ## Model a generování dat
-Byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b*.
-Oscilátor byl buzen silou *F* o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
+Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle následujícího obrázku)
+
+<img src="readme_img/model_img.png" width="300" height="300">
+
+
+Model je popsán differenciální rovnicí:
+
+![](readme_img/model_eq.png)
+
+Oscilátor byl buzen signálem u(t) o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
 
 #### Generování korektních a chybných dat
 Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena jako korektní.
