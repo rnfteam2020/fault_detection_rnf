@@ -7,7 +7,7 @@
 - Jan Bolcek
 - Jan Hrůzek
 
-<## Instalace 
+## Instalace 
 - install dependencies
 ```shell
 pip install -r requirements.txt
