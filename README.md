@@ -8,7 +8,7 @@
 - Jan Hrůzek
 
 ## Instalace 
-- Instalace potřebnách balíčků:
+- Instalace potřebných balíčků:
 ```shell
 pip install -r requirements.txt
 ```
@@ -77,8 +77,9 @@ zobrazeny v následující části.
 
 ## Výsledky
 
-Následující grafy přestavují chování neuronové sítě při známých vstupních a neznámých vstupních datech (na kterých nebyla naučena). Znázorňují postupné ustálení odchylky s narůstajícím počtem epoch.
-<img src="doc/img/loss.png">
+Následující grafy přestavují chování neuronové sítě při známých vstupních a neznámých vstupních datech (na kterých 
+nebyla naučena). Znázorňují postupné ustálení odchylky s narůstajícím počtem epoch.  
+<img src="doc/img/loss.png">  
 <img src="doc/img/eval.png">
 
 Při testovacím běhu neuronové sítě byly dosaženy následující výsledky:
@@ -97,10 +98,13 @@ nulové. V tomto případě proto nedochází k ustálení a soustava kmitá dá
 <img src="doc/img/fault.png">
 
 ## Závěr
-Pro detekci chyb na základě signálu (signal based fault detection) pomocí neuronové sítě byl vytvořen model, který byl použit pro generování dat. Tato vygenerována data ve formě signálů byla následně označena jako korektní a chybná a byla statisticky zpracována pro neuronovou síť. Poté proběhlo učení neuronové sitě na základě těchto statiských dat a labelů.  
+Pro detekci chyb na základě signálu (signal based fault detection) pomocí neuronové sítě byl vytvořen model, který byl 
+použit pro generování dat. Tato vygenerována data ve formě signálů byla následně označena jako korektní a chybná a byla 
+statisticky zpracována pro neuronovou síť. Poté proběhlo učení neuronové sitě na základě těchto statiských dat a labelů.  
 Neuronová síť, která byla vytvořena pomocí nástroje PyTorch, obsahuje 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
 vrstvě a 1 neuron ve výstupní vrstvě a v rámci její aplikace byla použita sigmoidní aktivační funkce.
-Nakonec byl proveden testovací běh neuronové sítě a byla vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
+Nakonec byl proveden testovací běh neuronové sítě a byla vygenerována verifikační data pro ověření funkčnosti neuronové 
+sítě. Ukázalo se, že síť poměrně rychle konverguje ke správnému určení, zda se jedná o korektní, nebo chybný signál.
 
 ## Zdroje
 - [wiki: Fault detection and isolation](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)
