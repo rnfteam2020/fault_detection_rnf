@@ -68,15 +68,16 @@ zobrazeny v následující části.
 
 ## Výsledky
 
-<img align="left"  width="500" src="doc/img/loss.png">
-<img align="right" width="500" src="doc/img/eval.png">
+<img src="doc/img/loss.png">
+<img src="doc/img/eval.png">
 
 ```shell
 [TEST] CASE 1 "Health data" : label=1.0 net_output=0.9970
 [TEST] CASE 2 "Fault data " : label=0.0 net_output=0.0000
 ```
-<img align="left" width="500" src="doc/img/health.png">
-<img align="right" width="500" src="doc/img/fault.png">
+
+<img src="doc/img/health.png">
+<img src="doc/img/fault.png">
 
 ## Závěr
 Pro detekci chyb pomocí neuronové sítě byl vytvořen model po generování dat. Na tomto modelu byla vygenerována data
