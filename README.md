@@ -33,8 +33,8 @@ Pro každý balík naměřených dat byla zpracována statistická analýza. Ur�
 - RMS
 - Fourierova transformace pomocí FFT algoritmu a následně vybrány 3 nejvíce dominantní frekvence.
 
-Tyto parametry byly zabaleny společně s označením, zda se jedná o chybná, nebo korektní data, a následně použita jako vstup pro neuronovou síť.
-
+Tyto parametry byly zabaleny společně s označením (label), zda se jedná o chybná, nebo korektní data, a následně použita jako dataset pro neuronovou síť.
+Pro práci s daty byla využity struktury knihovny *numpy*, které je následně Pytorch schopen zkonvertovat do svého formátu.
 ## Dataset
 Ze statisticky zpracovaných dat byl vytvořen dataset, který odpovídá vstupům neuronové sítě. Jedná se o tensor, který obsahuje hodnoty features (statistické parametry) a labels (označení správných a chybných dat, 1/0). Následně byl dataset rozdělen na trénovací a validační data v poměru 80% ku 20%. Takto rozdělený dataset byl dále použit v neuronové síti.
 
