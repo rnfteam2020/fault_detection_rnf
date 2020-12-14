@@ -77,7 +77,7 @@ zobrazeny v následující části.
 
 ## Výsledky
 
-Následující grafy přestavují chování neuronové sítě při známých vstupních a neznámých vstupních datech.
+Následující grafy přestavují chování neuronové sítě při známých vstupních a neznámých vstupních datech (na kterých nebyla naučena). Znázorňují postupné ustálení odchylky s narůstajícím počtem epoch.
 <img src="doc/img/loss.png">
 <img src="doc/img/eval.png">
 
