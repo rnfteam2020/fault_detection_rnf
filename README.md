@@ -46,7 +46,7 @@ který obsahuje hodnoty features (statistické parametry) a labels (označení s
 dataset rozdělen na trénovací a validační data v poměru 80% ku 20%. Takto rozdělený dataset byl dále použit v neuronové
 síti.
 
-## Neurová síť
+## Neuronová síť
 Pro vytvoření neuronové sítě byl použit nástroj PyTorch. Byl vytvořen model s jednou vstupní, skrytou a výstupní
 vrstvou.  
 
@@ -64,7 +64,7 @@ vrstvou.
       velikost batch: 10
 
 Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch a na počtu epoch. Výsledky trénování jsou
-zobrazené v následující části. 
+zobrazeny v následující části. 
 
 ## Výsledky
 
@@ -72,8 +72,8 @@ zobrazené v následující části.
 Pro detekci chyb pomocí neuronové sítě byl vytvořen model po generování dat. Na tomto modelu byla vygenerována data
 označená jako korektní i chybná. Tato data byla statisticky zpracována pro neuronovou síť, která jimi byla následně
 natrénována.  
-Neuronová síť byla vytvořena pomocí nástroje PyTorch, která obshovala 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
-vrtsvě a 1 neuron ve výstupní vrstvě.
+Neuronová síť byla vytvořena pomocí nástroje PyTorch, která obsahovala 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
+vrstvě a 1 neuron ve výstupní vrstvě.
 Byla také vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
 
 ## Instalace 
