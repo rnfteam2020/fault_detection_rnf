@@ -61,8 +61,7 @@ Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch 
 ## Závěr
 Pro detekci chyb pomocí neuronové sítě byl vytvořen model po generování dat. Na tomto modelu byla vygenerována data
 označená jako korektní i chybná. Tato data byla statisticky zpracována pro neuronovou síť, která jimi byla následně
-natrénována.
-
+natrénována.  
 Neuronová síť byla vytvořena pomocí nástroje PyTorch, která obshovala 20 neuronů ve vstupní vrstvě, 16 neuronů ve skryté
 vrtsvě a 1 neuron ve výstupní vrstvě.
 Byla také vygenerována verifikační data pro ověření funkčnosti neuronové sítě.
