@@ -32,9 +32,22 @@ Tyto parametry byly zabaleny společně s označením, zda se jedná o chybná, 
 Ze statisticky zpracovaných dat byl vytvořen dataset, který odpovídá vstupům neuronové sítě. Jedná se o tensor, který obsahuje hodnoty features (statistické parametry) a labels (označení správných a chybnách dat, 1/0). Následně byl dataset rozdělen na trénovací a validační data v poměru 80% ku 20%. Takto rozdělený dataset byl dále použit v neuronové síti.
 
 ## Neurová síť
-Pro vytvoření neuronové sítě byl použit nástroj PyTorch, který pro své modely využívá tensory. Byl vytvořen model s jednou vstupní, skrytou a výstupní vrstvou. Velikost těchto vsrtev je výstupní vrstva: 20, skrytá vrstva: 16, výstupní vrstva: 1. Jako aktivační funkci je použita funkce sigmoid. Síť je trénovaná s krokem 0,05 a počtem epoch 1000. 
+Pro vytvoření neuronové sítě byl použit nástroj PyTorch, který pro své modely využívá tensory. Byl vytvořen model s jednou vstupní, skrytou a výstupní vrstvou.  
+
+#### Velikost vsrtev:
+  - Vstupní vrstva: 20
+  - Skrytá vrstva: 16
+  - Výstupní vrstva: 1
+
+#### Parametry sítě:
+  - Aktivační funkce: sigmoid
+  - Optimizator: adam 
+  - Loss function: MSELoss 
+  - learning rate: 0,05 
+  - počet epoch: 300 
 
 ## Výsledky
+
 
 ## Instalace 
 - install dependencies
@@ -42,35 +55,6 @@ Pro vytvoření neuronové sítě byl použit nástroj PyTorch, který pro své 
 pip install -r requirements.txt
 ```
 - install [PyTorch](https://pytorch.org/get-started/locally/)
-
-## File structure
-
-### core:
-#### data
-- generate "healthy and fault" data of 1DOF model mechanical oscillator
-
-#### data_preprocessing
-- input - data
-- output - FFT, mean, max value ...
- 
-#### dataset
-- generate torch dataset
-
-#### nn_fit 
-- Training functions for NN models
-
-#### nn_models 
-- NN models
-
-#### visualization
-- visualize results
-- visualization functions
-
-#### mat_loader
-- wrapper for .mat format
- 
-### data:
-#### datasets
 
 ## Sources
 - [wiki](https://en.wikipedia.org/wiki/Fault_detection_and_isolation)
