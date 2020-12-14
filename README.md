@@ -17,7 +17,7 @@ Model je popsán differenciální rovnicí:
 
 ![](readme_img/model_eq.png)
 
-Oscilátor byl buzen signálem u(t) o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
+Oscilátor byl buzen signálem *u(t)* o průběhu "step" a sinus a měrena byla výchylka a rychlost tělesa.
 
 #### Generování korektních a chybných dat
 Pro zmíněný model bylo vygenerováno sto různých kombinací parametrů a pro ně naměřena odezva. Tato data byla označena
