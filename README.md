@@ -33,6 +33,8 @@ Jako chybná byla uvažována situace, kdy se v praxi "utrhne" pružina nebo tlu
 pokud je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená a nedochází ke kmitání. 
 
 ## Statistické zpracování dat
+Detekce chyby probíhala na základě signálu, jeho statistickém zpracování (model based fault detection).  
+  
 Pro každý balík naměřených dat byla zpracována statistická analýza. Určeny byly následující statistické parametry:
 - minimum
 - maximum
@@ -71,7 +73,7 @@ vrstvou.
       velikost batch: 5
 
 Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch a na počtu epoch. Výsledky trénování jsou
-zobrazeny v následující části. 
+zobrazeny v následující části.
 
 ## Výsledky
 
