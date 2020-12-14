@@ -68,6 +68,12 @@ zobrazeny v následující části.
 
 ## Výsledky
 
+
+```shell
+[TEST] CASE 1 "Health data" : label=1.0 net_output=1.00
+[TEST] CASE 2 "Fault data " : label=0.0 net_output=0.00
+```
+
 ## Závěr
 Pro detekci chyb pomocí neuronové sítě byl vytvořen model po generování dat. Na tomto modelu byla vygenerována data
 označená jako korektní i chybná. Tato data byla statisticky zpracována pro neuronovou síť, která jimi byla následně
