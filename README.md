@@ -33,7 +33,7 @@ Jako chybná byla uvažována situace, kdy se v praxi "utrhne" pružina nebo tlu
 pokud je poměrný útlum soustavy větší, nebo roven jedné, tedy soustava je přetlumená a nedochází ke kmitání. 
 
 ## Statistické zpracování dat
-Detekce chyby probíhala na základě signálu, jeho statistickém zpracování (model based fault detection).  
+Detekce chyby probíhala na základě signálu, jeho statistickém zpracování (signal based fault detection).  
   
 Pro každý balík naměřených dat byla zpracována statistická analýza. Určeny byly následující statistické parametry:
 - minimum
@@ -91,7 +91,7 @@ na následujících obrázcích.
 První obrázek zobrazuje výchylku a rychlost tělesa v čase pro korektní, plně funkční, model. Jak
 jde vidět, rychlost a výchylka jsou vůči sobě fázově posunuty a poměrně rychle se ustálí – jedná se o odezvu na
 skok, na který tlumená soustava reaguje postupným ustálením.
-<img src="doc/img/health.png">
+<img src="doc/img/health.png">  
 Druhý obrázek zobrazuje situaci pro chybný model, konkrétně případ, kdy se "utrhnul" tlumič a tlumení soustavy je tedy
 nulové. V tomto případě proto nedochází k ustálení a soustava kmitá dále se stejnou amplitudou.
 <img src="doc/img/fault.png">
