@@ -89,12 +89,15 @@ Při testovacím běhu neuronové sítě byly dosaženy následující výsledky
 ```
 Na modelu byla vygenerována korektní i chybná data pro verifikaci funkčnosti neuronové sítě. Tato data jsou zobrazena
 na následujících obrázcích.
-První obrázek zobrazuje výchylku a rychlost tělesa v čase pro korektní, plně funkční, model. Jak
+První obrázek zobrazuje výchylku a rychlost tělesa  
+v čase pro korektní, plně funkční, model. Jak
 jde vidět, rychlost a výchylka jsou vůči sobě fázově posunuty a poměrně rychle se ustálí – jedná se o odezvu na
 skok, na který tlumená soustava reaguje postupným ustálením.
 <img src="doc/img/health.png">  
-Druhý obrázek zobrazuje situaci pro chybný model, konkrétně případ, kdy se "utrhnul" tlumič a tlumení soustavy je tedy
-nulové. V tomto případě proto nedochází k ustálení a soustava kmitá dále se stejnou amplitudou.
+Druhý obrázek zobrazuje situaci pro chybný model, konkrétně případ, kdy se "utrhnul" tlumič  
+a tlumení soustavy je tedy
+nulové. V tomto případě proto nedochází k ustálení a soustava kmitá dále  
+se stejnou amplitudou.
 <img src="doc/img/fault.png">
 
 ## Závěr
