@@ -1,4 +1,4 @@
-# RNF project: Detekce chyby
+# RNF projekt: Detekce chyby
 
 #### Zpracovali: 
 - Artyom Voronin
@@ -58,6 +58,7 @@ Trénování neuronové sítě tedy probíhalo v závislosti na velikosti batch 
 
 ## Výsledky
 
+## Závěr
 
 ## Instalace 
 - install dependencies
