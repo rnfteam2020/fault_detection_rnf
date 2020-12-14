@@ -34,12 +34,12 @@ Ze statisticky zpracovaných dat byl vytvořen dataset, který odpovídá vstup�
 ## Neurová síť
 Pro vytvoření neuronové sítě byl použit nástroj PyTorch, který pro své modely využívá tensory. Byl vytvořen model s jednou vstupní, skrytou a výstupní vrstvou.  
 
-### Velikost vsrtev:
+#### Velikost vsrtev:
 vstupní vrstva: 20
 skrytá vrstva: 16
 výstupní vrstva: 1
 
-### Parametry sítě:
+#### Parametry sítě:
 Aktivační funkce: sigmoid
 optimizator: adam 
 loss function: MSELoss 
