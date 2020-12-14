@@ -8,10 +8,10 @@
 - Jan Hrůzek
 
 ## Model a generování dat
-Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělěsa, pružiny a tlumiče. Parametry tohoto
+Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělesa, pružiny a tlumiče. Parametry tohoto
 systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle následujícího obrázku)
 
-<img src="doc/img/harmonic_oscillator.png">
+<img align="right" width="213" height="170" src="doc/img/harmonic_oscillator.png">
 
 Model je popsán differenciální rovnicí:
 
@@ -68,11 +68,15 @@ zobrazeny v následující části.
 
 ## Výsledky
 
+<img align="left" src="doc/img/loss.png">
+<img align="right" src="doc/img/eval.png">
 
 ```shell
 [TEST] CASE 1 "Health data" : label=1.0 net_output=0.9970
 [TEST] CASE 2 "Fault data " : label=0.0 net_output=0.0000
 ```
+<img align="left" src="doc/img/health.png">
+<img align="right" src="doc/img/fault.png">
 
 ## Závěr
 Pro detekci chyb pomocí neuronové sítě byl vytvořen model po generování dat. Na tomto modelu byla vygenerována data
