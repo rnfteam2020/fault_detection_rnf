@@ -122,7 +122,10 @@ def generate_signals_with_labels():
     # pomerny utlum
     b_pom = b_arr / (2 * np.sqrt(m_arr * k_arr))
 
-    labels = [1 if x < 1 else 0 for x in b_pom]
+    k_treshold  = 1
+    b_treshold  = 0
+
+    labels = [1 if (x < 1 and k_arr[id_x] > k_treshold and b_arr[id_x] > b_treshold) else 0 for id_x,x in enumerate(b_pom)]
 
     dat = list(map(generate_data_from_model, b_arr, k_arr, m_arr))
 
