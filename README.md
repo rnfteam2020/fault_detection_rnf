@@ -9,7 +9,7 @@
 
 ## Model a generování dat
 Jako model byl použit jednoduchý mechanický oscilátor skládající se z tělesa, pružiny a tlumiče. Parametry tohoto
-systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle následujícího obrázku)
+systému jsou tedy hmostnost *m*, tuhost pružiny *k* a tlumení *b* (podle přiloženého obrázku).
 
 <img align="right" width="213" height="170" src="doc/img/harmonic_oscillator.png">
 
